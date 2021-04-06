@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
 
     <title>Hello!</title>
-    
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
-  </head>  
+  </head>
   <body>
-    <h1>Hi there!</h1>
-    
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
+    <a-scene cursor="rayOrigin: mouse">
+      <a-assets>
+        <a-asset-item></a-asset-item>
+      </a-assets>
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js" defer></script>
+      <a-entity
+      ></a-entity>
+      
+      <a-cylinder
+        position="2 0.75 -2"
+        radius="0.5"
+        height="1.5"
+        color="#FFC65D"
+        color-toggle
+        return-emitter
+      ></a-cylinder>
+      <a-plane
+        position="0 0 -4"
+        rotation="-90 0 0"
+        width="8"
+        height="8"
+        color="#7BC8A4"
+        return-emitter
+      ></a-plane>
+
+      <!-- TODO change background -->
+      <a-sky
+        src="https://cdn.glitch.com/e24eb4fc-6685-494b-89ff-71cb3f99a564%2FIMG_3427.PNG?v=1617282033518"
+      ></a-sky>
+      
+      <a-entity id="rig">
+        <a-entity camera position="0 6 0" look-controls wasd-controls>
+          <a-cursor
+            id="cursor"
+            raycaster
+            fuse="true"
+            fusetimeout="3000"
+          ></a-cursor>
+        </a-entity>
+      </a-entity>
+      
+    </a-scene>
   </body>
 </html>
