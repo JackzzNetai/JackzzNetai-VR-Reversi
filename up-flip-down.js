@@ -2,7 +2,6 @@ AFRAME.registerComponent('up-flip-down', {
   init: function () {
     let el = this.el;
     this.animateFlip = function() {
-      console.log(el.getAttribute());
       let currPosition = el.getAttribute('position');
       let params = {
         property: 'position',
