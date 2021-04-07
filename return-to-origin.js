@@ -11,7 +11,7 @@ AFRAME.registerComponent('return-to-origin', {
         property: 'position',
         to: {
           x: p.x,
-          y: BOARD_DEFAULT_Y,
+          y: el.getAttribute('id') === 'board' ? BOARD_DEFAULT_Y : PIECE_DEFAULT_Y,
           z: p.z
         },
         dur: 1000,
