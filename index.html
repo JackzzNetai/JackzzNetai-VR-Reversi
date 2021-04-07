@@ -7,7 +7,6 @@
 
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="up-flip-down.js"></script>
-    <script src="return-to-origin.js"></script>
     <script src="slide-up-down.js"></script>
     <script src="controller.js"></script>
 
@@ -25,11 +24,10 @@
       <a-entity
         id="board"
         gltf-model="#board_gltf"
-        return-to-origin
         slide-up-down
       ></a-entity>
       
-      <a-entity position=".5 .5 .5" up-flip-down return-to-origin slide-up-down>
+      <a-entity position=".5 .5 -1.5" up-flip-down slide-up-down>
         <a-cylinder
           position="0 .05 0"
           radius="0.4"
