@@ -3,12 +3,13 @@ AFRAME.registerComponent('return-to-origin', {
     let el = this.el;
     
     this.backToOrigin = function() {
+      let p = el.getAttribute('position');
       el.setAttribute('animation', {
         property: 'position',
         to: {
-          x: 0,
+          x: p.x,
           y: 0,
-          z: 0
+          z: p.y
         },
         dur: 1000,
         easing: 'easeInOutQuad'

@@ -39,10 +39,10 @@ AFRAME.registerComponent("slide-up-down", {
           property: "position",
           to: {
             x: p.x,
-            y: p.y - 1,
+            y: p.y - 0.1,
             z: p.z
           },
-          dur: 500,
+          dur: 10,
           easing: "linear"
         };
         el.setAttribute("animation", params);
@@ -53,10 +53,10 @@ AFRAME.registerComponent("slide-up-down", {
           property: "position",
           to: {
             x: p.x,
-            y: p.y + 1,
+            y: p.y + 0.1,
             z: p.z
           },
-          dur: 500,
+          dur: 10,
           easing: "linear"
         };
         el.setAttribute("animation", params);
