@@ -4,15 +4,19 @@ AFRAME.registerComponent('up-flip-down', {
     
     this.animateFlip = function() {
       let currPosition = el.getAttribute('position');
+      let x = currPosition.x;
+      let y = currPosition.y;
+      let z = currPosition.z;
+      console.log(currPosition.y);
       let params = {
         property: 'position',
         to: {
-          x: currPosition.x,
-          y: currPosition.y+3,
-          z: currPosition.z
+          x: x,
+          y: y + 3,
+          z: z
         },
         dur: 500,
-        easing: 'easeInQuad'
+        easing: 'easeInOutQuad'
       };
       el.setAttribute('animation', params);
       setTimeout(function() {
@@ -32,17 +36,17 @@ AFRAME.registerComponent('up-flip-down', {
           let params = {
             property: 'position',
             to: {
-              x: currPosition.x,
-              y: currPosition.y-3,
-              z: currPosition.z
+              x: x,
+              y: y,
+              z: z
             },
             dur: 500,
-            easing: 'easeOutQuad'
+            easing: 'easeInOutQuad'
           };
           el.setAttribute('animation', params);
-        }, 500)
+        }, 500);
       }, 500);
-    }
+    };
     
     this.el.addEventListener('click', this.animateFlip);
   },

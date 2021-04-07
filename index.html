@@ -23,12 +23,18 @@
         gltf-model="#board" up-flip-down
       ></a-entity>
       
-      <a-entity>
+      <a-entity position=".5 .5 .5">
         <a-cylinder
-          position=".5 0 .5"
+          position="0 .05 0"
           radius="0.4"
-          height="0.41"
+          height="0.1"
           color="#FFFFFF"
+        ></a-cylinder>
+        <a-cylinder
+          position="0 -.05 0"
+          radius="0.4"
+          height="0.1"
+          color="#000000"
         ></a-cylinder>
       </a-entity>
 
@@ -38,7 +44,7 @@
       ></a-sky>
       
       <a-entity id="rig">
-        <a-entity camera position="0 6 0" look-controls wasd-controls>
+        <a-entity camera position="0 5 0" look-controls wasd-controls>
         </a-entity>
       </a-entity>
       
