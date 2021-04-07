@@ -8,9 +8,11 @@ AFRAME.registerComponent('place-piece', {
       let p = e.detail.intersection.point;
       let scene = document.querySelector('a-scene');
       let boardY = document.getElementById("board").getAttribute('position').y;
-      console.log(y + PIECE_DEFAULT_Y );
+      console.log(boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y);
       
-      let new_piece = document.createElement('a-entity');
+      let newPiece = document.createElement('a-entity');
+      newPiece.setAttribute('', );
+      
     }
     
     this.el.addEventListener('click', this.placePiece);
