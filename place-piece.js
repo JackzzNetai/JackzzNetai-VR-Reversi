@@ -6,6 +6,15 @@ AFRAME.registerComponent('place-piece', {
     
     this.placePiece = function(e) {
       let p = e.detail.intersection.point;
+      let x = p.x;
+      let z = p.z;
+      if (x <= -4 || x >= 4 || z <= -4 || z >= 4) { // in case of edge of the board
+        return null;
+      }
+
+      if (round(x) === x || round(z) === z) { // right in the middle of two grid (extremely rare case)
+        return null;
+      }
       
       let newPiece = document.createElement('a-entity');
       let whiteCylinder = document.createElement('a-cylinder');
@@ -27,7 +36,7 @@ AFRAME.registerComponent('place-piece', {
       newPiece.appendChild(blackCylinder);
       
       let boardY = document.getElementById("board").getAttribute('position').y;
-      let xzPair = findNearestGridCenter(p.x, p.z);
+      let xzPair = findNearestGridCenter(x, z);
       newPiece.setAttribute('position', {x: xzPair[0], y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: xzPair[1]});
       newPiece.setAttribute('up-flip-down', {});
       newPiece.setAttribute('slide-up-down', {});
