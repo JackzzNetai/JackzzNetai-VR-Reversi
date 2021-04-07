@@ -8,7 +8,6 @@ AFRAME.registerComponent('place-piece', {
       let p = e.detail.intersection.point;
       let scene = document.querySelector('a-scene');
       let boardY = document.getElementById("board").getAttribute('position').y;
-      console.log(boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y);
       
       let newPiece = document.createElement('a-entity');
       let whiteCylinder = document.createElement('a-cylinder');
@@ -26,10 +25,13 @@ AFRAME.registerComponent('place-piece', {
         whiteCylinder.setAttribute('position', "0 -.05 0");
         blackCylinder.setAttribute('position', "0 .05 0");
       }
+      newPiece.appendChild(whiteCylinder);
+      newPiece.appendChild(blackCylinder);
       
-      newPiece.appendChild(whiteCylinder);
-      newPiece.appendChild(whiteCylinder);
-      newPiece.setAttribute('', );
+      newPiece.setAttribute('position', {x: p.x, y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: p.z});
+      newPiece.setAttribute('up-flip-down');
+      newPiece.setAttribute('slide-up-down');
+      scene.appendChild(newPiece);
       
       turn += 1;
     }
@@ -40,19 +42,3 @@ AFRAME.registerComponent('place-piece', {
     this.el.removeEventListener('click', this.placePiece);
   }
 });
-
-
-<a-entity position=".5 .5 -1.5" up-flip-down slide-up-down>
-        <a-cylinder
-          position="0 .05 0"
-          radius="0.4"
-          height="0.1"
-          color="#FFFFFF"
-        ></a-cylinder>
-        <a-cylinder
-          position="0 -.05 0"
-          radius="0.4"
-          height="0.1"
-          color="#000000"
-        ></a-cylinder>
-      </a-entity>
