@@ -6,8 +6,6 @@ AFRAME.registerComponent('place-piece', {
     
     this.placePiece = function(e) {
       let p = e.detail.intersection.point;
-      let scene = document.querySelector('a-scene');
-      let boardY = document.getElementById("board").getAttribute('position').y;
       
       let newPiece = document.createElement('a-entity');
       let whiteCylinder = document.createElement('a-cylinder');
@@ -28,10 +26,11 @@ AFRAME.registerComponent('place-piece', {
       newPiece.appendChild(whiteCylinder);
       newPiece.appendChild(blackCylinder);
       
+      let boardY = document.getElementById("board").getAttribute('position').y;
       newPiece.setAttribute('position', {x: p.x, y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: p.z});
-      newPiece.setAttribute('up-flip-down');
-      newPiece.setAttribute('slide-up-down');
-      scene.appendChild(newPiece);
+      newPiece.setAttribute('up-flip-down', {});
+      newPiece.setAttribute('slide-up-down', {});
+      document.querySelector('a-scene').appendChild(newPiece);
       
       turn += 1;
     }
