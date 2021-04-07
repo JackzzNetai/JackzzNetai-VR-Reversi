@@ -1,3 +1,6 @@
+var BOARD_DEFAULT_Y = 0;
+var PIECE_DEFAULT_Y = 0.5;
+
 AFRAME.registerComponent('return-to-origin', {
   init: function() {
     let el = this.el;
@@ -8,7 +11,7 @@ AFRAME.registerComponent('return-to-origin', {
         property: 'position',
         to: {
           x: p.x,
-          y: 0,
+          y: BOARD_DEFAULT_Y,
           z: p.y
         },
         dur: 1000,
