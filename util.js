@@ -7,8 +7,16 @@ function findNearestGridCenter(x, y) {
     return null;
   }
   
+  return [findClosestHalfs(x), findClosestHalfs(y)];
+}
+
+// pre: -4 < x < 4
+function findClosestHalfs(x) {
   if (x < -3.5) {
-    x = 3.5
+    x = -3.5;
+  } else if (x > 3.5) {
+    x = 3.5;
   }
-   else if (x > 3.5)
+  
+  
 }
