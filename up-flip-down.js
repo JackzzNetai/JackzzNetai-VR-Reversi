@@ -1,5 +1,5 @@
 AFRAME.registerComponent('up-flip-down', {
-  init: function () {
+  init: function() {
     let el = this.el;
     
     this.animateFlip = function() {
@@ -36,7 +36,7 @@ AFRAME.registerComponent('up-flip-down', {
       el.setAttribute('animation', params);
       el.setAttribute('animation__2', params2);
       
-      setTimeout(function () {
+      setTimeout(function() {
         params = {
           property: 'position',
           to: {

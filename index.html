@@ -7,6 +7,7 @@
 
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="up-flip-down.js"></script>
+    <script src="return-to-origin.js"></script>
 
     <title>Hello!</title>
   </head>
@@ -20,7 +21,9 @@
       </a-assets>
 
       <a-entity
+        position="0 -3 0"
         gltf-model="#board_gltf"
+        return-to-origin
       ></a-entity>
       
       <a-entity position=".5 .5 .5" up-flip-down>

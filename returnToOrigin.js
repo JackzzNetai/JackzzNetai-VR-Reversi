@@ -1,3 +1,0 @@
-AFRAME.registerComponent('returnToOrigin', function () {
-  
-})
