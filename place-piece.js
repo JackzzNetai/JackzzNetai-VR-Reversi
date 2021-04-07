@@ -27,7 +27,8 @@ AFRAME.registerComponent('place-piece', {
       newPiece.appendChild(blackCylinder);
       
       let boardY = document.getElementById("board").getAttribute('position').y;
-      newPiece.setAttribute('position', {x: p.x, y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: p.z});
+      let xzPair = findNearestGridCenter(p.x, p.z);
+      newPiece.setAttribute('position', {x: xzPair[0], y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: xzPair[1]});
       newPiece.setAttribute('up-flip-down', {});
       newPiece.setAttribute('slide-up-down', {});
       document.querySelector('a-scene').appendChild(newPiece);
