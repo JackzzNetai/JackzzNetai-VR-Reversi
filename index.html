@@ -8,7 +8,7 @@
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="up-flip-down.js"></script>
     <script src="slide-up-down.js"></script>
-    <script src="controller.js"></script>
+    <script src="place-piece.js"></script>
 
     <title>Hello!</title>
   </head>
@@ -25,6 +25,7 @@
         id="board"
         gltf-model="#board_gltf"
         slide-up-down
+        place-piece
       ></a-entity>
       
       <a-entity position=".5 .5 -1.5" up-flip-down slide-up-down>
@@ -52,7 +53,7 @@
         </a-entity>
       </a-entity>
       
-      <a-entity oculus-quest-controls="right" laser-controls="hand: right" raycaster="far: 20" controller></a-entity>
+      <a-entity oculus-quest-controls="right" laser-controls="hand: right" raycaster="far: 20"></a-entity>
       
     </a-scene>
   </body>

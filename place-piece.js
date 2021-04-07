@@ -7,8 +7,10 @@ AFRAME.registerComponent('place-piece', {
     this.placePiece = function(e) {
       let p = e.detail.intersection.point;
       let scene = document.querySelector('a-scene');
+      let boardY = document.getElementById("board").getAttribute('position').y;
+      console.log(y + PIECE_DEFAULT_Y );
       
-      let = document.createElement
+      let new_piece = document.createElement('a-entity');
     }
     
     this.el.addEventListener('click', this.placePiece);
@@ -17,3 +19,6 @@ AFRAME.registerComponent('place-piece', {
     this.el.removeEventListener('click', this.placePiece);
   }
 });
+
+
+
