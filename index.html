@@ -14,13 +14,13 @@
     <a-scene cursor="rayOrigin: mouse">
       <a-assets>
         <a-asset-item
-          id="board"
+          id="board_gltf"
           src="board/untitled.gltf">
         </a-asset-item>
       </a-assets>
 
       <a-entity
-        gltf-model="#board"
+        gltf-model="#board_gltf"
       ></a-entity>
       
       <a-entity position=".5 .5 .5" up-flip-down>
@@ -48,7 +48,7 @@
         </a-entity>
       </a-entity>
       
-      <a-entity oculus-quest-controls="right" laser-controls="hand: right" raycaster="far: 2"></a-entity>
+      <a-entity oculus-quest-controls="right" laser-controls="hand: right" raycaster="far: 4"></a-entity>
       
     </a-scene>
   </body>
