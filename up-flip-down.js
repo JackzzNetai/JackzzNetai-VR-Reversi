@@ -15,37 +15,24 @@ AFRAME.registerComponent('up-flip-down', {
           z: z
         },
         dur: 500,
-        easing: 'easeInOutQuad'
+        easing: 'easeInQuad'
       };
+      
+      let curr
+      let params2 = {
+        property: 'rotation',
+        to: {
+          x: 180,
+          y: 0,
+          z: 0
+        },
+        dur: 500,
+        easing: 'easeInQuad'
+      }
+      
       el.setAttribute('animation', params);
-      setTimeout(function() {
-        let currRotation = el.getAttribute('rotation');
-        let params = {
-          property: 'rotation',
-          to: {
-            x: currRotation.x + 180,
-            y: currPosition.y,
-            z: currRotation.z
-          },
-          dur: 500,
-          easing: 'easeInOutQuad'
-        };
-        el.setAttribute('animation', params);
-        setTimeout(function() {
-          let params = {
-            property: 'position',
-            to: {
-              x: x,
-              y: y,
-              z: z
-            },
-            dur: 500,
-            easing: 'easeInOutQuad'
-          };
-          el.setAttribute('animation', params);
-        }, 500);
-      }, 500);
-    };
+      el.setAttribute('animation__2', params2);
+    }
     
     this.el.addEventListener('click', this.animateFlip);
   },
