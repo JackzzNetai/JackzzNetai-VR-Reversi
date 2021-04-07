@@ -7,7 +7,6 @@ AFRAME.registerComponent('up-flip-down', {
       let x = currPosition.x;
       let y = currPosition.y;
       let z = currPosition.z;
-      console.log(currPosition.y);
       let params = {
         property: 'position',
         to: {
