@@ -12,7 +12,7 @@ AFRAME.registerComponent('return-to-origin', {
         to: {
           x: p.x,
           y: BOARD_DEFAULT_Y,
-          z: p.y
+          z: p.z
         },
         dur: 1000,
         easing: 'easeInOutQuad'
