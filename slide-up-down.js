@@ -1,5 +1,5 @@
-var BOARD_DEFAULT_Y = 0;
-var PIECE_DEFAULT_Y = 0.5;
+const BOARD_DEFAULT_Y = 0;
+const PIECE_DEFAULT_Y = 0.5;
 
 AFRAME.registerComponent("slide-up-down", {
   init: function() {
