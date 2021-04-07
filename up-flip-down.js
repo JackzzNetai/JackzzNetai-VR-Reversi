@@ -11,20 +11,20 @@ AFRAME.registerComponent('up-flip-down', {
         property: 'position',
         to: {
           x: x,
-          y: y + 3,
+          y: y + 1,
           z: z
         },
         dur: 500,
         easing: 'easeInQuad'
       };
       
-      let curr
+      let currRotation = el.getAttribute('rotation');
       let params2 = {
         property: 'rotation',
         to: {
-          x: 180,
-          y: 0,
-          z: 0
+          x: currRotation.x + 180,
+          y: currRotation.y,
+          z: currRotation.z
         },
         dur: 500,
         easing: 'easeInQuad'
@@ -32,6 +32,10 @@ AFRAME.registerComponent('up-flip-down', {
       
       el.setAttribute('animation', params);
       el.setAttribute('animation__2', params2);
+      
+      setTimeout(function () {
+        
+      }, 500);
     }
     
     this.el.addEventListener('click', this.animateFlip);
