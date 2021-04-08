@@ -18,11 +18,12 @@ AFRAME.registerComponent('place-piece', {
       
       //check validity
       let xzPair = findNearestGridCenter(x, z);
-      if (!game.isValidMove(game.convertXZCoordinateToPosIndex(xzPair), game.currPlayer)) {
-        return;
+      let posIndex = game.convertXZCoordinateToPosIndex(xzPair);
+      if (!game.isValidMove(posIndex, game.currPlayer)) {
+        return; //TODO
       }
       
-      // make a new piece
+      // make a new piece and place it at the right coordinate
       let newPiece = document.createElement('a-entity');
       let whiteCylinder = document.createElement('a-cylinder');
       whiteCylinder.setAttribute('radius', "0.4");
@@ -43,10 +44,21 @@ AFRAME.registerComponent('place-piece', {
       newPiece.appendChild(blackCylinder);
       
       let boardY = document.getElementById("board").getAttribute('position').y;
-      newPiece.setAttribute('position', {x: xzPair[0], y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: xzPair[1]});
+      newPiece.setAttribute('position', {x: xzPair[0], y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y + 0.5, z: xzPair[1]});
+      newPiece.setAttribute('id', "" + posIndex[0] + posIndex[1]);
       newPiece.setAttribute('up-flip-down', {});
       newPiece.setAttribute('slide-up-down', {});
       newPiece.setAttribute('flip-emitter', {});
+      newPiece.setAttribute('animation', {
+        property: "position",
+        to: {
+          x: xzPair[0],
+          y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y,
+          z: xzPair[1]
+        },
+        dur: 500,
+        easing: "linear"
+      })
       document.querySelector('a-scene').appendChild(newPiece);
       
       game.nextTurn();
