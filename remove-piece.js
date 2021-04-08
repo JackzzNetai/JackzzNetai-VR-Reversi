@@ -3,7 +3,8 @@ AFRAME.registerComponent('remove-piece', {
     let el = this.el;
     
     this.removePiece = function() {
-      
+      let intersectedEls = el.getAttribute('raycaster').intersectedEls;
+      alert(intersectedEls);
     };
     
     el.addEventListener('gripup', this.removePiece);
