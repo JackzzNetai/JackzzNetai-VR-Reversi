@@ -1,15 +1,16 @@
+var test;
 AFRAME.registerComponent('remove-piece', {
   init: function() {
     let el = this.el;
     
     this.removePiece = function() {
       let intersectedEls = el.getAttribute('raycaster').intersectedEls;
-      alert(intersectedEls);
+      console.log(intersectedEls);
     };
     
-    this.el.addEventListener('gripup', this.removePiece);
+    this.el.sceneEl.addEventListener('click', this.removePiece);
   },
   remove: function() {
-    this.el.removeEventListener('gripup', this.removePiece);
+    this.el.sceneEl.removeEventListener('click', this.removePiece);
   }
 })
