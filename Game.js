@@ -68,9 +68,22 @@ class Game {
       
       do {
         currGrid = [currGrid[0] + direction[0], currGrid[1] + direction[1]];
-        currPiece = this.getPieceAt(curr);
-      } while {}
+        currPiece = this.getPieceAt(currGrid);
+        if (!theOtherColorDetected && currPiece === !player) {
+          theOtherColorDetected = true;
+        }
+      } while (currPiece != null && currPiece !== player);
+      
+      if (currPiece == null) {
+        continue;
+      }
+      
+      if (theOtherColorDetected) {
+        return true;
+      }
     }
+    
+    return false;
   }
 
   getPieceAt(grid) {
@@ -90,6 +103,39 @@ class Game {
   // each own flip direction
   // pre: move is a valid move
   applyMove(move, player) {
+    let allDirections = [
+      [0, -1],
+      [-1, -1],
+      [-1, 0],
+      [-1, 1],
+      [0, 1],
+      [1, 1],
+      [1, 0],
+      [1, -1]
+    ];
+    
+    for (let i = 0; i < allDirections.length; i++) {
+      let currGrid = move;
+      let currPiece = null;
+      let theOtherColorDetected = false;
+      
+      do {
+        currGrid = [currGrid[0] + allDirections[i][0], currGrid[1] + allDirections[i][1]];
+        currPiece = this.getPieceAt(currGrid);
+        if (!theOtherColorDetected && currPiece === !player) {
+          theOtherColorDetected = true;
+        }
+      } while (currPiece != null && currPiece !== player);
+      
+      if (currPiece == null) {
+        continue;
+      }
+      
+      if (theOtherColorDetected) {
+        return true;
+      }
+    }
+    
     return []; // TODO
   }
 
