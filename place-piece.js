@@ -20,7 +20,7 @@ AFRAME.registerComponent('place-piece', {
       let xzPair = findNearestGridCenter(x, z);
       let posIndex = game.convertXZCoordinateToPosIndex(xzPair);
       if (!game.isValidMove(posIndex, game.currPlayer)) {
-        return; //TODO
+        return;
       }
       
       // make a new piece and place it at the right coordinate
@@ -60,6 +60,8 @@ AFRAME.registerComponent('place-piece', {
         easing: "linear"
       })
       document.querySelector('a-scene').appendChild(newPiece);
+      
+      //TODO: animate pieces that need be flipped
       
       game.nextTurn();
     }

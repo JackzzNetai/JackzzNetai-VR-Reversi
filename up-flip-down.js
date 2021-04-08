@@ -64,6 +64,8 @@ AFRAME.registerComponent('up-flip-down', {
         el.setAttribute('animation', params);
         el.setAttribute('animation__2', params2);
       }, 500);
+      
+      // TODO make new pieces
     }
     
     this.el.addEventListener('flipEvent', this.animateFlip);

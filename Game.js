@@ -49,7 +49,14 @@ class Game {
   
   // move is an array of length 2
   isValidMove(move, player) {
-    return true;
+    return true; // TODO
+  }
+  
+  // apply a move and change the pos correspondingly
+  // return a list of pieces to be flipped and with
+  // each own flip direction
+  applyMove(move, player) {
+    return []; // TOOD
   }
   
   decideWinner() {
