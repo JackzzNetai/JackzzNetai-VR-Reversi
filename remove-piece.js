@@ -7,9 +7,9 @@ AFRAME.registerComponent('remove-piece', {
       alert(intersectedEls);
     };
     
-    el.addEventListener('gripup', this.removePiece);
+    this.el.addEventListener('gripup', this.removePiece);
   },
   remove: function() {
-    
+    this.el.removeEventListener('gripup', this.removePiece);
   }
 })
