@@ -18,8 +18,8 @@ AFRAME.registerComponent('place-piece', {
       
       //check validity
       let xzPair = findNearestGridCenter(x, z);
-      let posIndex = game.convertXZCoordinateToPosIndex(xzPair);
-      if (!game.isValidMove(posIndex, game.currPlayer)) {
+      let move = game.convertXZCoordinateToPosIndex(xzPair);
+      if (!game.isValidMove(move, game.currPlayer)) {
         return;
       }
       
@@ -45,7 +45,7 @@ AFRAME.registerComponent('place-piece', {
       
       let boardY = document.getElementById("board").getAttribute('position').y;
       newPiece.setAttribute('position', {x: xzPair[0], y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y + 0.5, z: xzPair[1]});
-      newPiece.setAttribute('id', "" + posIndex[0] + posIndex[1]);
+      newPiece.setAttribute('id', "" + move[0] + move[1]);
       newPiece.setAttribute('up-flip-down', {});
       newPiece.setAttribute('slide-up-down', {});
       newPiece.setAttribute('flip-emitter', {});
@@ -61,7 +61,7 @@ AFRAME.registerComponent('place-piece', {
       })
       document.querySelector('a-scene').appendChild(newPiece);
       
-      //TODO: animate pieces that need be flipped
+      game.applyMove(move, game.currPlayer);
       
       game.nextTurn();
       if (game.gameset) {

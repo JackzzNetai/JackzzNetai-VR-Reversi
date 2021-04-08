@@ -9,7 +9,8 @@ const allDirections = [
   [1, 0],
   [1, -1]
 ];
-const associatedFlipDirection = [ //TODO
+const associatedFlipDirection = [
+  //TODO
   { x: 0, y: 0, z: 180 },
   { x: 0, y: 0, z: 180 },
   { x: 0, y: 0, z: 180 },
@@ -69,10 +70,12 @@ class Game {
   }
 
   // move is an array of length 2
-  // p
+  // pre: move is within the valid range
   isValidMove(move, player) {
-    if ()
-    
+    if (this.getPieceAt(move) != null) {
+      return false;
+    }
+
     for (let direction of allDirections) {
       let currGrid = move;
       let currPiece = null;
@@ -115,7 +118,8 @@ class Game {
   // each own flip direction
   // pre: move is a valid move
   applyMove(move, player) {
-    
+    this.pos[move[0]][move[1]] = player;
+
     let result = [];
 
     for (let i = 0; i < allDirections.length; i++) {
@@ -143,6 +147,20 @@ class Game {
           move[0] + allDirections[i][0],
           move[1] + allDirections[i][1]
         ];
+        currPiece = this.getPieceAt(currGrid);
+
+        while (currPiece !== player) {
+          this.pos[currGrid[0]][currGrid[1]] = player;
+          result.push(
+            document.getElementById("" + currGrid[0] + currGrid[1]),
+            associatedFlipDirection[i]
+          );
+          currGrid = [
+            currGrid[0] + allDirections[i][0],
+            currGrid[1] + allDirections[i][1]
+          ];
+          currPiece = this.getPieceAt(currGrid);
+        }
       }
     }
 
