@@ -10,15 +10,14 @@ const allDirections = [
   [1, -1]
 ];
 const associatedFlipDirection = [
-  //TODO
   { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 },
-  { x: 0, y: 0, z: 180 }
+  { x: 0, y: -90, z: 180 },
+  { x: -180, y: 0, z: 0 },
+  { x: 0, y: 90, z: -180 },
+  { x: 0, y: 0, z: -180 },
+  { x: 0, y: -90, z: -180 },
+  { x: 180, y: 0, z: 0 },
+  { x: 0, y: 90, z: 180 }
 ];
 
 class Game {
@@ -47,7 +46,7 @@ class Game {
       if (!this.hasValidMove(this.currPlayer)) {
         // both player has no valid moves
         this.gameset = true;
-        this.result = this.decideWinner();
+        this.decideWinner();
         return;
       }
     }
@@ -84,7 +83,7 @@ class Game {
       do {
         currGrid = [currGrid[0] + direction[0], currGrid[1] + direction[1]];
         currPiece = this.getPieceAt(currGrid);
-        if (!theOtherColorDetected && currPiece === !player) {
+        if (!theOtherColorDetected && currPiece == !player) {
           theOtherColorDetected = true;
         }
       } while (currPiece != null && currPiece !== player);
@@ -125,7 +124,6 @@ class Game {
     for (let i = 0; i < allDirections.length; i++) {
       let currGrid = move;
       let currPiece = null;
-      let theOtherColorDetected = false;
 
       do {
         currGrid = [
@@ -133,35 +131,29 @@ class Game {
           currGrid[1] + allDirections[i][1]
         ];
         currPiece = this.getPieceAt(currGrid);
-        if (!theOtherColorDetected && currPiece === !player) {
-          theOtherColorDetected = true;
-        }
       } while (currPiece != null && currPiece !== player);
 
       if (currPiece == null) {
         continue;
       }
 
-      if (theOtherColorDetected) {
+      let eachResult = [];
+      currGrid = [move[0] + allDirections[i][0], move[1] + allDirections[i][1]];
+      currPiece = this.getPieceAt(currGrid);
+
+      while (currPiece !== player) {
+        this.pos[currGrid[0]][currGrid[1]] = player;
+        eachResult.push([
+          document.getElementById("" + currGrid[0] + currGrid[1]),
+          associatedFlipDirection[i]
+        ]);
         currGrid = [
-          move[0] + allDirections[i][0],
-          move[1] + allDirections[i][1]
+          currGrid[0] + allDirections[i][0],
+          currGrid[1] + allDirections[i][1]
         ];
         currPiece = this.getPieceAt(currGrid);
-
-        while (currPiece !== player) {
-          this.pos[currGrid[0]][currGrid[1]] = player;
-          result.push(
-            document.getElementById("" + currGrid[0] + currGrid[1]),
-            associatedFlipDirection[i]
-          );
-          currGrid = [
-            currGrid[0] + allDirections[i][0],
-            currGrid[1] + allDirections[i][1]
-          ];
-          currPiece = this.getPieceAt(currGrid);
-        }
       }
+      result.push(eachResult);
     }
 
     return result;
@@ -172,9 +164,9 @@ class Game {
     let trueNum = 0;
     for (let i = 0; i < BOARD_SIDE; i++) {
       for (let j = 0; j < BOARD_SIDE; j++) {
-        if (this.pos[i][j] === true) {
+        if (this.pos[i][j] == true) {
           trueNum += 1;
-        } else if (this.pos[i][j] === false) {
+        } else if (this.pos[i][j] == false) {
           falseNum += 1;
         }
       }
@@ -188,16 +180,23 @@ class Game {
   }
 
   annouceWinner() {
-    if (this.result === true) {
-      console.alert("Black wins");
-    } else if (this.result === false) {
-      console.alert("White wins");
+    if (this.result == true) {
+      alert("Black wins");
+      console.log("Black wins");
+    } else if (this.result == false) {
+      alert("White wins");
+      console.log("White wins");
     } else {
-      console.alert("Tie");
+      alert("Tie");
+      console.log("Tie");
     }
   }
 
   convertXZCoordinateToPosIndex(xzPair) {
     return [xzPair[1] + 4 - 0.5, xzPair[0] + 4 - 0.5];
+  }
+
+  getGridByPieceId(id) {
+    return [parseInt(id.substring(0, 1)), parseInt(id.substring(1, 2))];
   }
 }
