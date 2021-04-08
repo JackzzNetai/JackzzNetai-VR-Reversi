@@ -3,6 +3,7 @@ AFRAME.registerComponent('up-flip-down', {
     let el = this.el;
     
     this.animateFlip = function(e) {
+      console.log(el.getAttribute('rotation'));
       let flipDirection = e.detail.flipDirection;
       
       let currPosition = el.getAttribute('position');
@@ -62,6 +63,11 @@ AFRAME.registerComponent('up-flip-down', {
         
         el.setAttribute('animation', params);
         el.setAttribute('animation__2', params2);
+        el.object3D.rotation.set(
+          THREE.Math.degToRad(0),
+          THREE.Math.degToRad(0),
+          THREE.Math.degToRad(0)
+        );
       }, 500);
     }
     
