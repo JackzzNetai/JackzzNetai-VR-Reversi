@@ -20,10 +20,7 @@
   <body>
     <a-scene cursor="rayOrigin: mouse">
       <a-assets>
-        <a-asset-item
-          id="board_gltf"
-          src="board/untitled.gltf">
-        </a-asset-item>
+        <a-asset-item id="board_gltf" src="board/untitled.gltf"> </a-asset-item>
       </a-assets>
 
       <a-entity
@@ -32,8 +29,14 @@
         slide-up-down
         place-piece
       ></a-entity>
-      
-      <a-entity id="44" position=".5 .5 .5" up-flip-down slide-up-down flip-emitter>
+
+      <a-entity
+        id="44"
+        position=".5 .5 .5"
+        up-flip-down
+        slide-up-down
+        flip-emitter
+      >
         <a-cylinder
           position="0 .05 0"
           radius="0.4"
@@ -47,7 +50,13 @@
           color="#000000"
         ></a-cylinder>
       </a-entity>
-      <a-entity id="33" position="-.5 .5 -.5" up-flip-down slide-up-down flip-emitter>
+      <a-entity
+        id="33"
+        position="-.5 .5 -.5"
+        up-flip-down
+        slide-up-down
+        flip-emitter
+      >
         <a-cylinder
           position="0 .05 0"
           radius="0.4"
@@ -61,7 +70,13 @@
           color="#000000"
         ></a-cylinder>
       </a-entity>
-      <a-entity id="43" position="-.5 .5 .5" up-flip-down slide-up-down flip-emitter>
+      <a-entity
+        id="43"
+        position="-.5 .5 .5"
+        up-flip-down
+        slide-up-down
+        flip-emitter
+      >
         <a-cylinder
           position="0 -.05 0"
           radius="0.4"
@@ -75,7 +90,13 @@
           color="#000000"
         ></a-cylinder>
       </a-entity>
-      <a-entity id="34" position=".5 .5 -.5" up-flip-down slide-up-down flip-emitter>
+      <a-entity
+        id="34"
+        position=".5 .5 -.5"
+        up-flip-down
+        slide-up-down
+        flip-emitter
+      >
         <a-cylinder
           position="0 -.05 0"
           radius="0.4"
@@ -94,14 +115,19 @@
       <a-sky
         src="https://cdn.glitch.com/e24eb4fc-6685-494b-89ff-71cb3f99a564%2FIMG_3427.PNG?v=1617282033518"
       ></a-sky>
-      
+
       <a-entity id="rig">
         <a-entity camera position="0 5 0" look-controls wasd-controls>
         </a-entity>
       </a-entity>
-      
-      <a-entity oculus-quest-controls="right" laser-controls="hand: right" raycaster="far: 20" remove-piece></a-entity>
-      
+
+      <a-entity
+        oculus-quest-controls="right"
+        laser-controls="hand: right"
+        raycaster="far: 20"
+        intersection-listener
+        remove-piece
+      ></a-entity>
     </a-scene>
   </body>
 </html>

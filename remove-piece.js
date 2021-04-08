@@ -5,7 +5,6 @@ AFRAME.registerComponent('remove-piece', {
     
     this.removePiece = function() {
       let intersectedEls = el.getAttribute('raycaster').intersectedEls;
-      console.log(intersectedEls);
     };
     
     this.el.sceneEl.addEventListener('click', this.removePiece);
