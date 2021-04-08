@@ -18,6 +18,7 @@ AFRAME.registerComponent('place-piece', {
       
       //check validity
       let xzPair = findNearestGridCenter(x, z);
+      let 
       
       let newPiece = document.createElement('a-entity');
       let whiteCylinder = document.createElement('a-cylinder');
