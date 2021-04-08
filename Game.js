@@ -49,7 +49,7 @@ class Game {
   
   // move is an array of length 2
   isValidMove(move, player) {
-    return true;
+    
   }
   
   decideWinner() {
