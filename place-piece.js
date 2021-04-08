@@ -87,7 +87,7 @@ AFRAME.registerComponent("place-piece", {
       if (game.gameset) {
         setTimeout(function() {
           game.annouceWinner();
-        }, 1500);
+        }, 1500); // TODO calculate time
       }
     };
 

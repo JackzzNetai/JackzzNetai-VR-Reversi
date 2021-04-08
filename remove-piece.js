@@ -3,10 +3,10 @@ AFRAME.registerComponent('remove-piece', {
     let el = this.el;
     
     this.removePiece = function() {
-      if (intersectedEl != null) {
-        if (intersectedEl.getAttribute('id') != "board") {
-          intersectedEl.parentNode.removeChild(intersectedEl);
-          intersectedEl
+      if (intersectedEls != null) {
+        if (intersectedEls.getAttribute('id') != "board") {
+          intersectedEls.parentNode.removeChild(intersectedEls);
+          intersectedEls = null;
         }
       }
     };

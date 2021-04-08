@@ -1,15 +1,15 @@
-var intersectedEl = null;
+var intersectedEls = null;
 
 AFRAME.registerComponent('intersection-listener', {
   init: function () {
     let el = this.el;
     
     this.updateIntersectedEl = function(e) {
-      intersectedEl = e.detail.els[0];
+      intersectedEls = e.detail.els;
     }
     
     this.removeIntersectedEl = function() {
-      intersectedEl = null;
+      intersectedEls = null;
     }
     
     this.el.addEventListener('raycaster-intersection', this.updateIntersectedEl);
