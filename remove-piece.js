@@ -6,13 +6,14 @@ AFRAME.registerComponent('remove-piece', {
       if (intersectedEl != null) {
         if (intersectedEl.getAttribute('id') != "board") {
           intersectedEl.parentNode.removeChild(intersectedEl);
+          intersectedEl
         }
       }
     };
     
-    this.el.sceneEl.addEventListener('gripup', this.removePiece);
+    this.el.addEventListener('gripup', this.removePiece);
   },
   remove: function() {
-    this.el.sceneEl.removeEventListener('gripup', this.removePiece);
+    this.el.removeEventListener('gripup', this.removePiece);
   }
 })
