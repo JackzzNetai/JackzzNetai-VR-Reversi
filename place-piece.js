@@ -70,8 +70,11 @@ AFRAME.registerComponent("place-piece", {
       document.querySelector("a-scene").appendChild(newPiece);
 
       let piecesToBeFlipped = game.applyMove(move, game.currPlayer);
+      let longestLength = 0;
       for (let pieceInEachDirection of piecesToBeFlipped) {
-        for (let i = 0; i < pieceInEachDirection.length; i++) {
+        let length = pieceInEachDirection.length;
+        if (lengtg > )
+        for (let i = 0; i < length; i++) {
           let piece = pieceInEachDirection[i];
           let el = piece[0];
           setTimeout(function() {
