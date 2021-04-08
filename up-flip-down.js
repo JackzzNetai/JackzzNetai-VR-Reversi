@@ -3,7 +3,7 @@ AFRAME.registerComponent('up-flip-down', {
     let el = this.el;
     
     this.animateFlip = function(e) {
-      //let flipDirection = e.detail.flipDirection;
+      let flipDirection = e.detail.flipDirection;
       
       let currPosition = el.getAttribute('position');
       let x = currPosition.x;
@@ -27,18 +27,13 @@ AFRAME.registerComponent('up-flip-down', {
       let params2 = {
         property: 'rotation',
         to: {
-          x: xR + 90,
-          y: yR,
-          z: zR
+          x: xR + flipDirection.x/2,
+          y: yR + flipDirection.y/2,
+          z: zR + flipDirection.z/2
         },
         dur: 500,
         easing: 'linear'
       }
-      params.to = {
-          x: xR + 90,
-          y: yR,
-          z: zR
-        }
       
       el.setAttribute('animation', params);
       el.setAttribute('animation__2', params2);
@@ -57,9 +52,9 @@ AFRAME.registerComponent('up-flip-down', {
         params2 = {
           property: 'rotation',
           to: {
-            x: xR + 180,
-            y: yR,
-            z: zR
+            x: xR + flipDirection.x,
+            y: yR + flipDirection.y,
+            z: zR + flipDirection.z
           },
           dur: 500,
           easing: 'linear'
@@ -70,9 +65,9 @@ AFRAME.registerComponent('up-flip-down', {
       }, 500);
     }
     
-    this.el.addEventListener('click', this.animateFlip);// flipEvent
+    this.el.addEventListener('flipEvent', this.animateFlip);
   },
   remove: function() {
-    this.el.removeEventListener('click', this.animateFlip);
+    this.el.removeEventListener('flipEvent', this.animateFlip);
   }
 })
