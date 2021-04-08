@@ -61,7 +61,12 @@ AFRAME.registerComponent('place-piece', {
       })
       document.querySelector('a-scene').appendChild(newPiece);
       
-      game.applyMove(move, game.currPlayer);
+      let piecesToBeFlipped = game.applyMove(move, game.currPlayer);
+      for (let piece of piecesToBeFlipped) {
+        let el = piece[0];
+        console.log(el.getAttribute('id'));
+        //el.emit('flipEvent', {flipDirection: piece[1], flipDuration: 350});
+      }
       
       game.nextTurn();
       if (game.gameset) {
