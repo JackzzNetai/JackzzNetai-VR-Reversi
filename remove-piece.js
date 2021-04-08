@@ -5,6 +5,7 @@ AFRAME.registerComponent("remove-piece", {
         let piece = intersectedEl.parentNode;
         let grid = game.getGridByPieceId(piece.getAttribute("id"));
         game.pos[grid[0]][grid[1]] = null;
+        game.gameset = false;
         piece.parentNode.removeChild(piece);
         intersectedEl = null;
       }
