@@ -1,4 +1,24 @@
 const BOARD_SIDE = 8;
+const allDirections = [
+  [0, -1],
+  [-1, -1],
+  [-1, 0],
+  [-1, 1],
+  [0, 1],
+  [1, 1],
+  [1, 0],
+  [1, -1]
+];
+const associatedFlipDirection = [ //TODO
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 },
+  { x: 0, y: 0, z: 180 }
+];
 
 class Game {
   constructor() {
@@ -49,23 +69,15 @@ class Game {
   }
 
   // move is an array of length 2
+  // p
   isValidMove(move, player) {
-    let allDirections = [
-      [0, -1],
-      [-1, -1],
-      [-1, 0],
-      [-1, 1],
-      [0, 1],
-      [1, 1],
-      [1, 0],
-      [1, -1]
-    ];
+    if ()
     
     for (let direction of allDirections) {
       let currGrid = move;
       let currPiece = null;
       let theOtherColorDetected = false;
-      
+
       do {
         currGrid = [currGrid[0] + direction[0], currGrid[1] + direction[1]];
         currPiece = this.getPieceAt(currGrid);
@@ -73,16 +85,16 @@ class Game {
           theOtherColorDetected = true;
         }
       } while (currPiece != null && currPiece !== player);
-      
+
       if (currPiece == null) {
         continue;
       }
-      
+
       if (theOtherColorDetected) {
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -103,40 +115,38 @@ class Game {
   // each own flip direction
   // pre: move is a valid move
   applyMove(move, player) {
-    let allDirections = [
-      [0, -1],
-      [-1, -1],
-      [-1, 0],
-      [-1, 1],
-      [0, 1],
-      [1, 1],
-      [1, 0],
-      [1, -1]
-    ];
     
+    let result = [];
+
     for (let i = 0; i < allDirections.length; i++) {
       let currGrid = move;
       let currPiece = null;
       let theOtherColorDetected = false;
-      
+
       do {
-        currGrid = [currGrid[0] + allDirections[i][0], currGrid[1] + allDirections[i][1]];
+        currGrid = [
+          currGrid[0] + allDirections[i][0],
+          currGrid[1] + allDirections[i][1]
+        ];
         currPiece = this.getPieceAt(currGrid);
         if (!theOtherColorDetected && currPiece === !player) {
           theOtherColorDetected = true;
         }
       } while (currPiece != null && currPiece !== player);
-      
+
       if (currPiece == null) {
         continue;
       }
-      
+
       if (theOtherColorDetected) {
-        return true;
+        currGrid = [
+          move[0] + allDirections[i][0],
+          move[1] + allDirections[i][1]
+        ];
       }
     }
-    
-    return []; // TODO
+
+    return result;
   }
 
   decideWinner() {
