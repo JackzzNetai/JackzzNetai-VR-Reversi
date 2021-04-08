@@ -2,7 +2,9 @@ AFRAME.registerComponent('up-flip-down', {
   init: function() {
     let el = this.el;
     
-    this.animateFlip = function() {
+    this.animateFlip = function(e) {
+      //let flipDirection = e.detail.flipDirection;
+      
       let currPosition = el.getAttribute('position');
       let x = currPosition.x;
       let y = currPosition.y;
@@ -32,6 +34,11 @@ AFRAME.registerComponent('up-flip-down', {
         dur: 500,
         easing: 'linear'
       }
+      params.to = {
+          x: xR + 90,
+          y: yR,
+          z: zR
+        }
       
       el.setAttribute('animation', params);
       el.setAttribute('animation__2', params2);
@@ -63,7 +70,7 @@ AFRAME.registerComponent('up-flip-down', {
       }, 500);
     }
     
-    this.el.addEventListener('click', this.animateFlip);
+    this.el.addEventListener('click', this.animateFlip);// flipEvent
   },
   remove: function() {
     this.el.removeEventListener('click', this.animateFlip);

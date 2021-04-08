@@ -13,7 +13,7 @@ function findClosestHalfs(x) {
     return x;
   }
   
-  let closestInt = round(x);
+  let closestInt = Math.round(x);
   let smallerCandidate = closestInt - 0.5;
   let largerCandidate = closestInt + 0.5;
   

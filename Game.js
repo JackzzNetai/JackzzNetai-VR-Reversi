@@ -73,9 +73,9 @@ class Game {
   }
   
   annouceWinner() {
-    if (this.result == true) {
+    if (this.result === true) {
       console.alert("Black wins");
-    } else if (this.result == false) {
+    } else if (this.result === false) {
       console.alert("White wins");
     } else {
       console.alert("Tie");
