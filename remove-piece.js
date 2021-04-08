@@ -1,15 +1,18 @@
 AFRAME.registerComponent('remove-piece', {
   init: function() {
     let el = this.el;
-    test = el;
     
     this.removePiece = function() {
-      let intersectedEls = el.getAttribute('raycaster').intersectedEls;
+      if (intersectedEl != null) {
+        if (intersectedEl.getAttribute('id') != "board") {
+          intersectedEl.parentNode.removeChild(intersectedEl);
+        }
+      }
     };
     
-    this.el.sceneEl.addEventListener('click', this.removePiece);
+    this.el.sceneEl.addEventListener('gripup', this.removePiece);
   },
   remove: function() {
-    this.el.sceneEl.removeEventListener('click', this.removePiece);
+    this.el.sceneEl.removeEventListener('gripup', this.removePiece);
   }
 })

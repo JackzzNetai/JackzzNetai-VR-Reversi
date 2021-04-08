@@ -3,13 +3,20 @@ var intersectedEl = null;
 AFRAME.registerComponent('intersection-listener', {
   init: function () {
     let el = this.el;
+    
     this.updateIntersectedEl = function(e) {
-      intersectedEl = e.detail.getIntersection(this.el);
+      intersectedEl = e.detail.els[0];
     }
     
-    this.el.sceneEl.addEventListener('raycaster-intersected', this.updateIntersectedEl);
+    this.removeIntersectedEl = function() {
+      intersectedEl = null;
+    }
+    
+    this.el.addEventListener('raycaster-intersection', this.updateIntersectedEl);
+    this.el.addEventListener('raycaster-intersection-cleared', this.removeIntersectedEl);
   },
   remove: function() {
-    this.el.sceneEl.removeEventListener('raycaster-intersected', this.updateIntersectedEl);
+    this.el.removeEventListener('raycaster-intersection', this.updateIntersectedEl);
+    this.el.removeEventListener('raycaster-intersection-cleared', this.removeIntersectedEl);
   }
 })
