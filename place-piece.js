@@ -1,4 +1,4 @@
-var turn = 1;
+var game = new Game();
 
 AFRAME.registerComponent('place-piece', {
   init: function() {
@@ -12,7 +12,7 @@ AFRAME.registerComponent('place-piece', {
         return null;
       }
 
-      if (round(x) === x || round(z) === z) { // right in the middle of two grid (extremely rare case)
+      if (Math.round(x) === x || Math.round(z) === z) { // right in the middle of two grid (extremely rare case)
         return null;
       }
       
@@ -25,7 +25,7 @@ AFRAME.registerComponent('place-piece', {
       blackCylinder.setAttribute('radius', "0.4");
       blackCylinder.setAttribute('height', "0.1");
       blackCylinder.setAttribute('color', "#000000");
-      if (turn % 2 == 1) { //white's turn
+      if (game.currPlayer == false) { //white's turn
         whiteCylinder.setAttribute('position', "0 .05 0");
         blackCylinder.setAttribute('position', "0 -.05 0");
       } else { //black's turn
@@ -42,7 +42,7 @@ AFRAME.registerComponent('place-piece', {
       newPiece.setAttribute('slide-up-down', {});
       document.querySelector('a-scene').appendChild(newPiece);
       
-      turn += 1;
+      game.nextTurn();
     }
     
     this.el.addEventListener('click', this.placePiece);
