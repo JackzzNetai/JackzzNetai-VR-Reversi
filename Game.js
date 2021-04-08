@@ -50,27 +50,39 @@ class Game {
 
   // move is an array of length 2
   isValidMove(move, player) {
-    let allDirections = [[0, -1],
-                        [-1, -1],
-                        [-1, 0],
-                        [-1, 1],
-                        [0, 1],
-                        [1, 1],
-                        [1, 0],
-                        [1, -1]];
-    for (let eachDire)
+    let allDirections = [
+      [0, -1],
+      [-1, -1],
+      [-1, 0],
+      [-1, 1],
+      [0, 1],
+      [1, 1],
+      [1, 0],
+      [1, -1]
+    ];
+    
+    for (let direction of allDirections) {
+      let currGrid = move;
+      let currPiece = null;
+      let theOtherColorDetected = false;
+      
+      do {
+        currGrid = [currGrid[0] + direction[0], currGrid[1] + direction[1]];
+        currPiece = this.getPieceAt(curr);
+      } while {}
+    }
   }
 
-  getPieceAt(index) {
+  getPieceAt(grid) {
     if (
-      index[0] < 0 ||
-      index[0] > BOARD_SIDE - 1 ||
-      index[1] < 0 ||
-      index[1] > BOARD_SIDE - 1
+      grid[0] < 0 ||
+      grid[0] > BOARD_SIDE - 1 ||
+      grid[1] < 0 ||
+      grid[1] > BOARD_SIDE - 1
     ) {
       return null;
     }
-    return this.pos[index[0]][index[1]];
+    return this.pos[grid[0]][grid[1]];
   }
 
   // apply a move and change the pos correspondingly

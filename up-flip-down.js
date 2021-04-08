@@ -3,7 +3,6 @@ AFRAME.registerComponent('up-flip-down', {
     let el = this.el;
     
     this.animateFlip = function(e) {
-      console.log(el.getAttribute('id'));
       let flipDirection = e.detail.flipDirection;
       let flipDuration = e.detail.flipDuration;
       
