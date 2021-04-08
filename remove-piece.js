@@ -2,7 +2,10 @@ AFRAME.registerComponent("remove-piece", {
   init: function() {
     this.removePiece = function() {
       if (intersectedEl != null && intersectedEl.getAttribute("id") != "board") {
-        intersectedEl.parentNode.removeChild(intersectedEl);
+        let piece = intersectedEl.parentNode;
+        let grid = game.getGridByPieceId(piece.getAttribute("id"));
+        game.pos[grid[0]][grid[1]] = null;
+        piece.parentNode.removeChild(piece);
         intersectedEl = null;
       }
     };
