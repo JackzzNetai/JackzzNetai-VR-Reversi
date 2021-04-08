@@ -1,7 +1,7 @@
-var test;
 AFRAME.registerComponent('remove-piece', {
   init: function() {
     let el = this.el;
+    test = el;
     
     this.removePiece = function() {
       let intersectedEls = el.getAttribute('raycaster').intersectedEls;
