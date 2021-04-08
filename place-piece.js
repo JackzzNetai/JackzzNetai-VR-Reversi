@@ -22,10 +22,31 @@ AFRAME.registerComponent('place-piece', {
         return;
       }
       
-      let newPiece = makeWhitePiece('ore');
+      // make a new piece
+      let newPiece = document.createElement('a-entity');
+      let whiteCylinder = document.createElement('a-cylinder');
+      whiteCylinder.setAttribute('radius', "0.4");
+      whiteCylinder.setAttribute('height', "0.1");
+      whiteCylinder.setAttribute('color', "#FFFFFF");
+      let blackCylinder = document.createElement('a-cylinder');
+      blackCylinder.setAttribute('radius', "0.4");
+      blackCylinder.setAttribute('height', "0.1");
+      blackCylinder.setAttribute('color', "#000000");
+      if (game.currPlayer == false) { //white's turn
+        whiteCylinder.setAttribute('position', "0 .05 0");
+        blackCylinder.setAttribute('position', "0 -.05 0");
+      } else { //black's turn
+        whiteCylinder.setAttribute('position', "0 -.05 0");
+        blackCylinder.setAttribute('position', "0 .05 0");
+      }
+      newPiece.appendChild(whiteCylinder);
+      newPiece.appendChild(blackCylinder);
       
       let boardY = document.getElementById("board").getAttribute('position').y;
       newPiece.setAttribute('position', {x: xzPair[0], y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y, z: xzPair[1]});
+      newPiece.setAttribute('up-flip-down', {});
+      newPiece.setAttribute('slide-up-down', {});
+      newPiece.setAttribute('flip-emitter', {});
       document.querySelector('a-scene').appendChild(newPiece);
       
       game.nextTurn();

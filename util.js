@@ -22,20 +22,3 @@ function findClosestHalfs(x) {
   }
   return largerCandidate;
 }
-
-function makeWhitePiece(id) {
-  return (<a-entity id=eval(id) up-flip-down slide-up-down flip-emitter>
-      <a-cylinder
-        position="0 .05 0"
-        radius="0.4"
-        height="0.1"
-        color="#FFFFFF"
-      ></a-cylinder>
-      <a-cylinder
-        position="0 -.05 0"
-        radius="0.4"
-        height="0.1"
-        color="#000000"
-      ></a-cylinder>
-    </a-entity>);
-}
