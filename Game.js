@@ -81,4 +81,8 @@ class Game {
       console.alert("Tie");
     }
   }
+  
+  convertXZCoordinateToPosIndex(xzPair) {
+    return [xzPair[1] + 4 - 0.5, xzPair[0] + 4 - 0.5];
+  }
 }
