@@ -14,7 +14,7 @@ class Game {
       [null, null, null, null, null, null, null, null]
     ],
     this.currPlayer = true, // true = black, false = white
-    this.gameOver = false,
+    this.gameset = false,
     this.result = null // winner
   }
   
@@ -49,14 +49,14 @@ class Game {
   
   // move is an array of length 2
   isValidMove(move, player) {
-    return true; // TODO
+    
   }
   
   // apply a move and change the pos correspondingly
   // return a list of pieces to be flipped and with
   // each own flip direction
   applyMove(move, player) {
-    return []; // TOOD
+    return []; // TODO
   }
   
   decideWinner() {

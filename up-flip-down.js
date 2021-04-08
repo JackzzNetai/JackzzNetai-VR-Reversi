@@ -5,6 +5,7 @@ AFRAME.registerComponent('up-flip-down', {
     this.animateFlip = function(e) {
       console.log(el.getAttribute('id'));
       let flipDirection = e.detail.flipDirection;
+      let flipDuration = e.detail.flipDuration;
       
       let currPosition = el.getAttribute('position');
       let x = currPosition.x;
@@ -17,7 +18,7 @@ AFRAME.registerComponent('up-flip-down', {
           y: y + 0.6,
           z: z
         },
-        dur: 500,
+        dur: flipDuration,
         easing: 'linear'
       };
       
@@ -32,7 +33,7 @@ AFRAME.registerComponent('up-flip-down', {
           y: yR + flipDirection.y/2,
           z: zR + flipDirection.z/2
         },
-        dur: 500,
+        dur: flipDuration,
         easing: 'linear'
       }
       
@@ -47,7 +48,7 @@ AFRAME.registerComponent('up-flip-down', {
             y: y,
             z: z
           },
-          dur: 500,
+          dur: flipDuration,
           easing: 'linear'
         };
         params2 = {
@@ -57,13 +58,13 @@ AFRAME.registerComponent('up-flip-down', {
             y: yR + flipDirection.y,
             z: zR + flipDirection.z
           },
-          dur: 500,
+          dur: flipDuration,
           easing: 'linear'
         };
         
         el.setAttribute('animation', params);
         el.setAttribute('animation__2', params2);
-      }, 500);
+      }, flipDuration);
       
       // TODO make new pieces
     }

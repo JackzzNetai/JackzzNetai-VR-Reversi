@@ -64,6 +64,9 @@ AFRAME.registerComponent('place-piece', {
       //TODO: animate pieces that need be flipped
       
       game.nextTurn();
+      if (game.gameset) {
+        game.annouceWinner();
+      }
     }
     
     this.el.addEventListener('click', this.placePiece);
