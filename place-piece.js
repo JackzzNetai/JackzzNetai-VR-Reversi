@@ -73,7 +73,9 @@ AFRAME.registerComponent("place-piece", {
       let longestLength = 0;
       for (let pieceInEachDirection of piecesToBeFlipped) {
         let length = pieceInEachDirection.length;
-        if (lengtg > )
+        if (length > longestLength) {
+          longestLength = length;
+        }
         for (let i = 0; i < length; i++) {
           let piece = pieceInEachDirection[i];
           let el = piece[0];
@@ -90,7 +92,7 @@ AFRAME.registerComponent("place-piece", {
       if (game.gameset) {
         setTimeout(function() {
           game.annouceWinner();
-        }, 1500); // TODO calculate time
+        }, longestLength * 180 + 405);
       }
     };
 
