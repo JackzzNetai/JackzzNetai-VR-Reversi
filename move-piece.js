@@ -9,18 +9,19 @@ AFRAME.registerComponent("move-piece", {
         return;
       }
       let d = document.getElementById("board").getAttribute("position").y + 0.4;
+      let position = el.getAttribute('position');
       let originCoordinate = [
-        el.position[0] + raycaster.origin[0],
-        el.position[1] + raycaster.origin[1],
-        el.position[2] + raycaster.origin[2]
+        position.x + raycaster.origin.x,
+        position.y + raycaster.origin.y,
+        position.z + raycaster.origin.z
       ];
       let direction = [
-        raycaster.direction[0],
-        raycaster.direction[1],
-        raycaster.direction[2]
+        raycaster.direction.x,
+        raycaster.direction.y,
+        raycaster.direction.z
       ];
-
       let intersection = findIntersection([0, 1, 0], d, originCoordinate, direction);
+      alert(intersection);
       //intersectedEl.parentNode.object3D.position.x = intersection[0];
       //intersectedEl.parentNode.object3D.position.z = intersection[2];
     };
