@@ -5,6 +5,8 @@ AFRAME.registerComponent("place-piece", {
     let el = this.el;
 
     this.placePiece = function(e) {
+      if (game.)
+      
       let p = e.detail.intersection.point;
       let x = p.x;
       let z = p.z;
