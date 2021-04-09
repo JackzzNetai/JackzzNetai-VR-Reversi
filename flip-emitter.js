@@ -2,6 +2,7 @@ AFRAME.registerComponent('flip-emitter', {
   init: function() {
     let el = this.el;
     this.flipCall = function() {
+      game.gameset = false;
       let grid = game.getGridByPieceId(el.getAttribute("id"));
       game.pos[grid[0]][grid[1]] = !game.pos[grid[0]][grid[1]];
       el.emit('flipEvent', {flipDirection: {x: 540, y: 0, z: 0}, flipDuration: 300});
