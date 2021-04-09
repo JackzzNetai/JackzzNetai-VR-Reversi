@@ -4,7 +4,7 @@ AFRAME.registerComponent("remove-piece", {
       if (
         intersectedEl != null &&
         intersectedEl.getAttribute("id") != "board" &&
-        intersectedEl.parentNode.getAttribute("id") != "turn_indicator"
+        intersectedEl.getAttribute("id") != "turn_indicator"
       ) {
         let piece = intersectedEl.parentNode;
         let grid = game.getGridByPieceId(piece.getAttribute("id"));
