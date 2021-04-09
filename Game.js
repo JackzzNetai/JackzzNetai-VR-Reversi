@@ -42,6 +42,7 @@ class Game {
   nextTurn() {
     if (this.hasValidMove(!this.currPlayer)) {
       this.currPlayer = !this.currPlayer;
+      
     } else {
       if (!this.hasValidMove(this.currPlayer)) {
         // both player has no valid moves
