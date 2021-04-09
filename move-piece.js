@@ -4,11 +4,10 @@ AFRAME.registerComponent("move-piece", {
     let raycaster = el.getAttribute("raycaster");
 
     this.startGrab = function() {
-      if (intersectedEl.parentNode.getAttribute("id") != "white_container" ||
+      if (intersectedEl.parentNode.getAttribute("id") != "white_container" &&
         intersectedEl.parentNode.getAttribute("id") != "black_container") {
         return;
       }
-      alert("here");
       let d = document.getElementById("board").getAttribute("position").y + 0.4;
       let originCoordinate = [
         el.position[0] + raycaster.origin[0],
@@ -22,8 +21,8 @@ AFRAME.registerComponent("move-piece", {
       ];
 
       let intersection = findIntersection([0, 1, 0], d, originCoordinate, direction);
-      el.object3D.position.x = intersection[0];
-      el.object3D.position.z = intersection[2];
+      //intersectedEl.parentNode.object3D.position.x = intersection[0];
+      //intersectedEl.parentNode.object3D.position.z = intersection[2];
     };
 
     this.el.addEventListener("gripdown", this.startGrab);
