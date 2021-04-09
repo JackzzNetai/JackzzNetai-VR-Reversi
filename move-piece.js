@@ -1,20 +1,34 @@
-AFRAME.registerComponent('move-piece', {
+AFRAME.registerComponent("move-piece", {
   init: function() {
     let el = this.el;
-    let raycaster = el.getAttribute('raycaster');
-    
+    let raycaster = el.getAttribute("raycaster");
+
     this.startGrab = function() {
-      let d = ;
-      let originCoordinate = [el.position[0], el.position[1], el.position[2]];
-      let direction = [raycaster.direction[0], raycaster.direction[1], raycaster.direction[2]];
-      
-      findIntersection([0, 1, 0], d, originCoordinate, direction);
-    }
-    
-    this.el.addEventListener('triggerdown', this.startGrab);
+      if (intersectedEl.parentNode.getAttribute("id") != "white_container" ||
+        intersectedEl.parentNode.getAttribute("id") != "black_container") {
+        return;
+      }
+      let d = document.getElementById("board").getAttribute("position").y + 0.4;
+      let originCoordinate = [
+        el.position[0] + raycaster.origin[0],
+        el.position[1] + raycaster.origin[1],
+        el.position[2] + raycaster.origin[2]
+      ];
+      let direction = [
+        raycaster.direction[0],
+        raycaster.direction[1],
+        raycaster.direction[2]
+      ];
+
+      let intersection = findIntersection([0, 1, 0], d, originCoordinate, direction);
+      el.object3D.position.x = intersection[0];
+      el.object3D.position.z = intersection[2];
+    };
+
+    this.el.addEventListener("triggerdown", this.startGrab);
   },
-  
+
   remove: function() {
-    
+    this.el.removeEventListener("triggerdown", this.startGrab);
   }
-})
+});
