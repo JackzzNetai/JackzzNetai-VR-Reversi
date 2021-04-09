@@ -114,12 +114,12 @@ class Game {
 
   // apply a move and change the pos correspondingly
   // return a list of pieces to be flipped and with
-  // each own flip direction
+  // each's own flip direction
   // pre: move is a valid move
   applyMove(move, player) {
     this.pos[move[0]][move[1]] = player;
 
-    let result = [];
+    let result = new Array(allDirections.length);
 
     for (let i = 0; i < allDirections.length; i++) {
       let currGrid = move;
@@ -153,7 +153,7 @@ class Game {
         ];
         currPiece = this.getPieceAt(currGrid);
       }
-      result.push(eachResult);
+      result[i] = eachResult;
     }
 
     return result;
