@@ -76,7 +76,12 @@ AFRAME.registerComponent("up-flip-down", {
           blackCylinder.setAttribute("height", "0.1");
           blackCylinder.setAttribute("color", "#000000");
           let id = el.getAttribute("id");
-          let pieceColor = game.getPieceAt(game.getGridByPieceId(id));
+          let pieceColor = null;
+          if (id === "turn_indicator") {
+            pieceColor = game.currPlayer;
+          } else {
+            pieceColor = game.getPieceAt(game.getGridByPieceId(id));
+          }
           if (pieceColor == false) {
             //white's turn
             whiteCylinder.setAttribute("position", "0 .05 0");
