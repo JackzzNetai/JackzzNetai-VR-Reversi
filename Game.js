@@ -42,7 +42,7 @@ class Game {
   nextTurn() {
     if (this.hasValidMove(!this.currPlayer)) {
       this.currPlayer = !this.currPlayer;
-      
+      document.getElementById("turn_indicator").emit('flipEvent', {flipDirection: {x: 540, y: 0, z: 0}, flipDuration: 300});
     } else {
       if (!this.hasValidMove(this.currPlayer)) {
         // both player has no valid moves
