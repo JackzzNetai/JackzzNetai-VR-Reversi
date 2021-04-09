@@ -92,7 +92,7 @@ AFRAME.registerComponent("place-piece", {
       if (game.gameset) {
         setTimeout(function() {
           game.annouceWinner();
-        }, longestLength * 180 + 405);
+        }, longestLength * 180 + 420);
       }
     };
 
