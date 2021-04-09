@@ -23,6 +23,7 @@
         <a-asset-item id="board_gltf" src="board/untitled.gltf"> </a-asset-item>
       </a-assets>
 
+      <!-- board -->
       <a-entity
         id="board"
         gltf-model="#board_gltf"
@@ -30,6 +31,7 @@
         place-piece
       ></a-entity>
 
+      <!-- initial position -->
       <a-entity
         id="44"
         position=".5 .5 .5"
@@ -110,16 +112,41 @@
           color="#000000"
         ></a-cylinder>
       </a-entity>
+      
+      <!-- turn indicator -->
+      <a-entity
+        id="turn_indicator"
+        position="-5 .5 -3.5"
+        up-flip-down
+        slide-up-down
+        flip-emitter
+      >
+        <a-cylinder
+          position="0 -.05 0"
+          radius="0.4"
+          height="0.1"
+          color="#FFFFFF"
+        ></a-cylinder>
+        <a-cylinder
+          position="0 .05 0"
+          radius="0.4"
+          height="0.1"
+          color="#000000"
+        ></a-cylinder>
+      </a-entity>
 
+      <!-- background -->
       <a-sky
         src="https://cdn.glitch.com/e24eb4fc-6685-494b-89ff-71cb3f99a564%2FIMG_3427.PNG?v=1617282033518"
       ></a-sky>
 
+      <!-- camera -->
       <a-entity id="rig">
         <a-entity camera position="0 5 0" look-controls wasd-controls>
         </a-entity>
       </a-entity>
 
+      <!-- right controller -->
       <a-entity
         oculus-quest-controls="right"
         laser-controls="hand: right"

@@ -22,3 +22,5 @@ function findClosestHalfs(x) {
   }
   return largerCandidate;
 }
+
+// TODO: Possible to define board, turn_indicator, as "undeletable"?
