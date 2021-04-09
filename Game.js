@@ -133,29 +133,30 @@ class Game {
         currPiece = this.getPieceAt(currGrid);
       } while (currPiece != null && currPiece !== player);
 
-      if (currPiece == null) {
-        continue;
-      }
-
       let eachResult = [];
-      currGrid = [move[0] + allDirections[i][0], move[1] + allDirections[i][1]];
-      currPiece = this.getPieceAt(currGrid);
-
-      while (currPiece !== player) {
-        this.pos[currGrid[0]][currGrid[1]] = player;
-        eachResult.push([
-          document.getElementById("" + currGrid[0] + currGrid[1]),
-          associatedFlipDirection[i]
-        ]);
+      if (currPiece != null) {
         currGrid = [
-          currGrid[0] + allDirections[i][0],
-          currGrid[1] + allDirections[i][1]
+          move[0] + allDirections[i][0],
+          move[1] + allDirections[i][1]
         ];
         currPiece = this.getPieceAt(currGrid);
+
+        while (currPiece !== player) {
+          this.pos[currGrid[0]][currGrid[1]] = player;
+          eachResult.push([
+            document.getElementById("" + currGrid[0] + currGrid[1]),
+            associatedFlipDirection[i]
+          ]);
+          currGrid = [
+            currGrid[0] + allDirections[i][0],
+            currGrid[1] + allDirections[i][1]
+          ];
+          currPiece = this.getPieceAt(currGrid);
+        }
       }
+
       result[i] = eachResult;
     }
-
     return result;
   }
 
