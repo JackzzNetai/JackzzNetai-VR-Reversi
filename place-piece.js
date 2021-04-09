@@ -6,14 +6,16 @@ AFRAME.registerComponent("place-piece", {
 
     this.placePiece = function(e) {
       if (!game.hasValidMove(game.currPlayer)) {
-        if (!game.hasValidMove(game.currPlayer)) {
-          
+        if (!game.hasValidMove(!game.currPlayer)) {
+          game.gameset = true;
+          game.decideWinner();
+          game.annouceWinner();
         } else {
-        game.togglePlayer();
-        return;
+          game.togglePlayer();
         }
+        return;
       }
-      
+
       let p = e.detail.intersection.point;
       let x = p.x;
       let z = p.z;
