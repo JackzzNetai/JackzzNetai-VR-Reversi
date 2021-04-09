@@ -41,8 +41,7 @@ class Game {
   // increment turn by 1 and decide the player for the next turn
   nextTurn() {
     if (this.hasValidMove(!this.currPlayer)) {
-      this.currPlayer = !this.currPlayer;
-      document.getElementById("turn_indicator").emit('flipEvent', {flipDirection: {x: 540, y: 0, z: 0}, flipDuration: 300});
+      this.togglePlayer();
     } else {
       if (!this.hasValidMove(this.currPlayer)) {
         // both player has no valid moves
@@ -52,6 +51,16 @@ class Game {
       }
     }
     this.turn += 1;
+  }
+
+  togglePlayer() {
+    this.currPlayer = !this.currPlayer;
+    document
+      .getElementById("turn_indicator")
+      .emit("flipEvent", {
+        flipDirection: { x: 540, y: 0, z: 0 },
+        flipDuration: 300
+      });
   }
 
   // return true if player has valid moves,

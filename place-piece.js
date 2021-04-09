@@ -5,7 +5,14 @@ AFRAME.registerComponent("place-piece", {
     let el = this.el;
 
     this.placePiece = function(e) {
-      if (game.)
+      if (!game.hasValidMove(game.currPlayer)) {
+        if (!game.hasValidMove(game.currPlayer)) {
+          
+        } else {
+        game.togglePlayer();
+        return;
+        }
+      }
       
       let p = e.detail.intersection.point;
       let x = p.x;
