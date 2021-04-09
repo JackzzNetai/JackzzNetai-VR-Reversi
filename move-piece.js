@@ -8,6 +8,7 @@ AFRAME.registerComponent("move-piece", {
         intersectedEl.parentNode.getAttribute("id") != "black_container") {
         return;
       }
+      alert("here");
       let d = document.getElementById("board").getAttribute("position").y + 0.4;
       let originCoordinate = [
         el.position[0] + raycaster.origin[0],
@@ -25,10 +26,10 @@ AFRAME.registerComponent("move-piece", {
       el.object3D.position.z = intersection[2];
     };
 
-    this.el.addEventListener("triggerdown", this.startGrab);
+    this.el.addEventListener("gripdown", this.startGrab);
   },
 
   remove: function() {
-    this.el.removeEventListener("triggerdown", this.startGrab);
+    this.el.removeEventListener("gripdown", this.startGrab);
   }
 });
