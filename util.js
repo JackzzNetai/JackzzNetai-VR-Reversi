@@ -23,6 +23,30 @@ function findClosestHalfs(x) {
   return largerCandidate;
 }
 
-function 
+// coefficient = [a, b, c]
+// origin = [x0, y0, z0]
+// direction = [xd, yd, zd]
+// This function find the intersection of
+// plane: ax+by+cz=d with ray [x0 y0 z0]^T + l * [xd yd zd]^T 
+function findIntersection(coefficient, d, origin, direction) {
+  let l = (d - dotP(coefficient, origin)) / dotP(coefficient, direction);
+  
+}
+
+// calculate the dot product of v1 and v2
+// pre: v1 and v2 are array of same length
+function dotP(v1, v2) {
+  let sum = 0;
+  for (let i = 0; i < v1.length; i++) {
+    sum += v1[i] * v2[i];
+  }
+  return sum;
+}
+
+// return origin + l * direction
+// pre: origin and direction are array of same length
+function coordinateOnRayAtLength(origin, direction, l) {
+  let result = 
+}
 
 // TODO: Possible to define board, turn_indicator, as "undeletable"?
