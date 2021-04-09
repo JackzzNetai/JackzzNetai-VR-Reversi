@@ -18,7 +18,7 @@ AFRAME.registerComponent("place-piece", {
         return;
       }
 
-      //check validity
+      //check move validity
       let xzPair = findNearestGridCenter(x, z);
       let move = game.convertXZCoordinateToPosIndex(xzPair);
       if (!game.isValidMove(move, game.currPlayer)) {
