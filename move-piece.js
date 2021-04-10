@@ -52,15 +52,14 @@ AFRAME.registerComponent("move-piece", {
         return;
       }
       let piecePosition = chosenPiece.object3D.position;
-      let pieceColor =
-        chosenPiece.getAttribute("id") === "white_container" ? false : true;
-      
+      let pieceColor = !(chosenPiece.getAttribute("id") === "white_container");
+
       let pieceY =
-          document.getElementById("board").object3D.position.y +
-          PIECE_DEFAULT_Y -
-          BOARD_DEFAULT_Y;
+        document.getElementById("board").object3D.position.y +
+        PIECE_DEFAULT_Y -
+        BOARD_DEFAULT_Y;
       if (game.withinBoardArea(piecePosition.x, piecePosition.z)) {
-        // Drop a piece
+        // Drop a new piece on the board
         let x = piecePosition.x;
         let z = piecePosition.z;
         let grid = game.convertXZCoordinateToPosIndex([x, z]);
@@ -91,7 +90,15 @@ AFRAME.registerComponent("move-piece", {
           y: pieceY + 0.1,
           z: z
         });
-        newPiece.setAttribute("id", "" + grid[0] + grid[1]);
+
+        let id = "" + grid[0] + grid[1];
+        if (game.pos[grid[0]][grid[1]] != null) {
+          // remove the original piece on the board
+          let pieceToRemove = document.getElementById(id);
+          pieceToRemove.parentNode.removeChild(pieceToRemove);
+        }
+
+        newPiece.setAttribute("id", id);
         newPiece.setAttribute("up-flip-down", {});
         newPiece.setAttribute("slide-up-down", {});
         newPiece.setAttribute("flip-emitter", {});
@@ -106,14 +113,13 @@ AFRAME.registerComponent("move-piece", {
           easing: "linear"
         });
         document.querySelector("a-scene").appendChild(newPiece);
+
+        game.pos[grid[0]][grid[1]] = pieceColor;
       }
-      
+
       clearInterval(inInterval);
       piecePosition.x = 5;
-      piecePosition.y =
-        document.getElementById("board").object3D.position.y +
-        PIECE_DEFAULT_Y -
-        BOARD_DEFAULT_Y;
+      piecePosition.y = pieceY;
       if (pieceColor) {
         // black_container
         piecePosition.z = 3.5;
