@@ -52,22 +52,74 @@ AFRAME.registerComponent("move-piece", {
         return;
       }
       let piecePosition = chosenPiece.object3D.position;
+      let pieceColor =
+        chosenPiece.getAttribute("id") === "white_container" ? false : true;
+      
+      let pieceY =
+          document.getElementById("board").object3D.position.y +
+          PIECE_DEFAULT_Y -
+          BOARD_DEFAULT_Y;
       if (game.withinBoardArea(piecePosition.x, piecePosition.z)) {
+        // Drop a piece
         let x = piecePosition.x;
         let z = piecePosition.z;
         let grid = game.convertXZCoordinateToPosIndex([x, z]);
+
+        let newPiece = document.createElement("a-entity");
+        let whiteCylinder = document.createElement("a-cylinder");
+        whiteCylinder.setAttribute("radius", "0.4");
+        whiteCylinder.setAttribute("height", "0.1");
+        whiteCylinder.setAttribute("color", "#FFFFFF");
+        let blackCylinder = document.createElement("a-cylinder");
+        blackCylinder.setAttribute("radius", "0.4");
+        blackCylinder.setAttribute("height", "0.1");
+        blackCylinder.setAttribute("color", "#000000");
+        if (pieceColor) {
+          // black
+          whiteCylinder.setAttribute("position", "0 -.05 0");
+          blackCylinder.setAttribute("position", "0 .05 0");
+        } else {
+          // white
+          whiteCylinder.setAttribute("position", "0 .05 0");
+          blackCylinder.setAttribute("position", "0 -.05 0");
+        }
+        newPiece.appendChild(whiteCylinder);
+        newPiece.appendChild(blackCylinder);
+
+        newPiece.setAttribute("position", {
+          x: x,
+          y: pieceY + 0.1,
+          z: z
+        });
+        newPiece.setAttribute("id", "" + grid[0] + grid[1]);
+        newPiece.setAttribute("up-flip-down", {});
+        newPiece.setAttribute("slide-up-down", {});
+        newPiece.setAttribute("flip-emitter", {});
+        newPiece.setAttribute("animation", {
+          property: "position",
+          to: {
+            x: x,
+            y: pieceY,
+            z: z
+          },
+          dur: 200,
+          easing: "linear"
+        });
+        document.querySelector("a-scene").appendChild(newPiece);
       }
+      
       clearInterval(inInterval);
       piecePosition.x = 5;
       piecePosition.y =
         document.getElementById("board").object3D.position.y +
         PIECE_DEFAULT_Y -
         BOARD_DEFAULT_Y;
-      if (chosenPiece.getAttribute("id") === "white_container") {
-        piecePosition.z = 2.5;
-      } else {
-        // chosenPiece.getAttribute('id') === "black_container"
+      if (pieceColor) {
+        // black_container
         piecePosition.z = 3.5;
+      } else {
+        // white_container
+        piecePosition.z = 2.5;
       }
       chosenPiece = null;
       inInterval = null;
