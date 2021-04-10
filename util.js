@@ -53,10 +53,10 @@ function coordinateOnRayAtLength(origin, direction, l) {
   return result;
 }
 
-function intersectionOfLaserAndBoard(controller, raycaster) {
-  let d = document.getElementById("board").getAttribute("position").y + 0.4;
+function intersectionOfLaserAndBoard(controller, d) {
   let position = controller.object3D.position;
   let pointForDirection = new THREE.Vector3(0, 0, -1);
+  let raycaster = el.getAttribute("raycaster");
   controller.object3D.localToWorld(pointForDirection);
   let controllerWorldDirection = pointForDirection.sub(position);
 
