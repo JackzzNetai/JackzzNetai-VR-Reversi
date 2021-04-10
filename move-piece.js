@@ -9,27 +9,24 @@ AFRAME.registerComponent("move-piece", {
       if (intersectedEl == null) {
         return;
       }
-      
-      if (intersectedEl.parentNode.getAttribute("id") != "white_container" &&
-        intersectedEl.parentNode.getAttribute("id") != "black_container") {
+
+      if (
+        intersectedEl.parentNode.getAttribute("id") != "white_container" &&
+        intersectedEl.parentNode.getAttribute("id") != "black_container"
+      ) {
         return;
       }
-      
-      gripped = true;     
+
+      gripped = true;
       while (gripped) {
-        let intersection = intersectionOfLaserAndBoard(el, raycaster)
+        let intersection = intersectionOfLaserAndBoard(el, raycaster);
         intersectedEl.parentNode.object3D.position.x = intersection[0];
         intersectedEl.parentNode.object3D.position.z = intersection[2];
-        break;
+        setTimeout(function() {}, 200);
       }
     };
 
-    this.dropPiece = function() {
-      //gripped = false;
-    }
-    
     this.el.addEventListener("gripdown", this.startGrip);
-    this.el.addEventListener("gripup", this.dropPiece);
   },
 
   remove: function() {
