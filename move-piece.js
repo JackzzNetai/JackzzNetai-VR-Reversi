@@ -51,17 +51,17 @@ AFRAME.registerComponent("move-piece", {
       if (chosenPiece == null) {
         return;
       }
-      let piecePosition = chosenPiece.object3D.position;
+      let containerPosition = chosenPiece.object3D.position;
       let pieceColor = !(chosenPiece.getAttribute("id") === "white_container");
 
       let pieceY =
         document.getElementById("board").object3D.position.y +
         PIECE_DEFAULT_Y -
         BOARD_DEFAULT_Y;
-      if (game.withinBoardArea(piecePosition.x, piecePosition.z)) {
+      if (game.withinBoardArea(containerPosition.x, containerPosition.z)) {
         // Drop a new piece on the board
-        let x = piecePosition.x;
-        let z = piecePosition.z;
+        let x = containerPosition.x;
+        let z = containerPosition.z;
         let grid = game.convertXZCoordinateToPosIndex([x, z]);
 
         let newPiece = document.createElement("a-entity");
@@ -115,17 +115,19 @@ AFRAME.registerComponent("move-piece", {
         document.querySelector("a-scene").appendChild(newPiece);
 
         game.pos[grid[0]][grid[1]] = pieceColor;
+        game.gameset = false;
+        game.turn += 1;
       }
 
       clearInterval(inInterval);
-      piecePosition.x = 5;
-      piecePosition.y = pieceY;
+      containerPosition.x = 5;
+      containerPosition.y = pieceY;
       if (pieceColor) {
         // black_container
-        piecePosition.z = 3.5;
+        containerPosition.z = 3.5;
       } else {
         // white_container
-        piecePosition.z = 2.5;
+        containerPosition.z = 2.5;
       }
       chosenPiece = null;
       inInterval = null;
