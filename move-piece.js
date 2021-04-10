@@ -1,7 +1,10 @@
+var test;
+
 AFRAME.registerComponent("move-piece", {
   init: function() {
     let el = this.el;
     let raycaster = el.getAttribute("raycaster");
+    test = raycaster;
 
     this.startGrab = function() {
       if (intersectedEl.parentNode.getAttribute("id") != "white_container" &&
