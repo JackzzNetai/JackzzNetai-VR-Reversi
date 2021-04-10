@@ -56,32 +56,28 @@ function coordinateOnRayAtLength(origin, direction, l) {
 // d: plane y = d
 function intersectionOfLaserAndBoard(controller, d) {
   let raycaster = controller.getAttribute("raycaster");
-  console.log(
-    controller.object3D.localToWorld(
+  let laserOriginWorld = controller.object3D.localToWorld(
       new THREE.Vector3(
         raycaster.origin.x,
         raycaster.origin.y,
         raycaster.origin.z
       )
-    )
-  );
-  console.log(
-    new THREE.Vector3(
+    );
+  let laserDirectionWorld = new THREE.Vector3(
       raycaster.direction.x,
       raycaster.direction.y,
       raycaster.direction.z
-    ).transformDirection(controller.object3D.matrixWorld)
-  );
+    ).transformDirection(controller.object3D.matrixWorld);
 
   let origin = [
-    raycaster.origin.x + controller.object3D.position.x,
-    raycaster.origin.y + controller.object3D.position.y,
-    raycaster.origin.z + controller.object3D.position.z
+    laserOriginWorld.x,
+    laserOriginWorld.y,
+    laserOriginWorld.z
   ];
   let direction = [
-    raycaster.direction.x,
-    raycaster.direction.y,
-    raycaster.direction.z
+    laserDirectionWorld.x,
+    laserDirectionWorld.y,
+    laserDirectionWorld.z
   ];
   return findIntersection([0, 1, 0], d, origin, direction);
 }
