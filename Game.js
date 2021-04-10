@@ -55,12 +55,10 @@ class Game {
 
   togglePlayer() {
     this.currPlayer = !this.currPlayer;
-    document
-      .getElementById("turn_indicator")
-      .emit("flipEvent", {
-        flipDirection: { x: 540, y: 0, z: 0 },
-        flipDuration: 300
-      });
+    document.getElementById("turn_indicator").emit("flipEvent", {
+      flipDirection: { x: 540, y: 0, z: 0 },
+      flipDuration: 300
+    });
   }
 
   // return true if player has valid moves,
@@ -209,5 +207,9 @@ class Game {
 
   getGridByPieceId(id) {
     return [parseInt(id.substring(0, 1)), parseInt(id.substring(1, 2))];
+  }
+
+  withinBoardArea(x, z) {
+    return -4 < x && x < 4 && -4 < z && z < 4;
   }
 }
