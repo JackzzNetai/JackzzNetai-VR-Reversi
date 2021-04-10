@@ -56,9 +56,10 @@ function coordinateOnRayAtLength(origin, direction, l) {
 // d: plane y = d
 function intersectionOfLaserAndBoard(controller, d) {
   let controllerPosition = controller.object3D.position;
-  let laserOrigin = controllerPosition.add(raycaster.origin);
   let raycaster = controller.getAttribute("raycaster");
+  let laserOrigin = controllerPosition.add(raycaster.origin);
   let pointForDirection = raycaster.direction;
+  console.log(pointForDirection);
   controller.object3D.localToWorld(pointForDirection);
   let laserDirection = pointForDirection.sub(controllerPosition);
 
