@@ -20,11 +20,12 @@ AFRAME.registerComponent("move-piece", {
         let intersection = intersectionOfLaserAndBoard(el, raycaster)
         intersectedEl.parentNode.object3D.position.x = intersection[0];
         intersectedEl.parentNode.object3D.position.z = intersection[2];
+        break;
       }
     };
 
     this.dropPiece = function() {
-      gripped = false;
+      //gripped = false;
     }
     
     this.el.addEventListener("gripdown", this.startGrip);
