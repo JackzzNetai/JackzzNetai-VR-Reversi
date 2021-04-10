@@ -1,3 +1,4 @@
+var chosenPiece = null;
 var inInterval = null;
 
 AFRAME.registerComponent("move-piece", {
@@ -27,9 +28,9 @@ AFRAME.registerComponent("move-piece", {
       // + 0.2
       // + 0.1
       // + 0.0   board center
-      
-      let chosenPiece = intersectedEl.parentNode;
-      let boardPosition = document.getElementById("board").getAttribute("position");
+
+      chosenPiece = intersectedEl.parentNode;
+      let boardPosition = document.getElementById("board").object3D.position;
       inInterval = setInterval(function() {
         let d = boardPosition.y + 0.4;
         let intersection = intersectionOfLaserAndBoard(el, d);
@@ -45,13 +46,28 @@ AFRAME.registerComponent("move-piece", {
         chosenPiece.object3D.position.z = z;
       }, 2);
     };
-    
+
     this.drop = function() {
+      let piecePosition = chosenPiece.object3D.position;
+      if (game.withinBoardArea(piecePosition.x, piecePosition.z)) {
+      }
       clearInterval(inInterval);
-    }
+      piecePosition.x = 5;
+      piecePosition.y =
+        document.getElementById("board").object3D.position.y +
+        PIECE_DEFAULT_Y -
+        BOARD_DEFAULT_Y;
+      if (chosenPiece.getAttribute('id') === "white_container") {
+          piecePosition.z = 2.5;
+          } else { // chosenPiece.getAttribute('id') === "black_container"
+        piecePosition.z = 3.5;
+      }
+      chosenPiece = null;
+      inInterval = null;
+    };
 
     this.el.addEventListener("gripdown", this.startGrip);
-    this.el.addEventListener()
+    this.el.addEventListener();
   },
 
   remove: function() {

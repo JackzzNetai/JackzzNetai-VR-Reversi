@@ -58,7 +58,7 @@ AFRAME.registerComponent("place-piece", {
       newPiece.appendChild(whiteCylinder);
       newPiece.appendChild(blackCylinder);
 
-      let boardY = document.getElementById("board").getAttribute("position").y;
+      let boardY = document.getElementById("board").object3D.position.y;
       newPiece.setAttribute("position", {
         x: xzPair[0],
         y: boardY + PIECE_DEFAULT_Y - BOARD_DEFAULT_Y + 0.5,
