@@ -16,13 +16,15 @@ AFRAME.registerComponent("move-piece", {
         return;
       }
 
+      let chosenPiece = intersectedEl.parentNode;
       let boardPosition = document.getElementById("board").getAttribute("position");
       gripped = true;
       setInterval(function() {
-        let intersection = intersectionOfLaserAndBoard(el, boardPosition);
-        intersectedEl.parentNode.object3D.position.x = intersection[0];
-        intersectedEl.parentNode.object3D.position.x = intersection[0];
-        intersectedEl.parentNode.object3D.position.z = intersection[2];
+        let d = boardPosition.y + 0.7;
+        let intersection = intersectionOfLaserAndBoard(el, d);
+        chosenPiece.object3D.position.x = intersection[0];
+        chosenPiece.object3D.position.y = boardPosition.y + 0.6;
+        chosenPiece.object3D.position.z = intersection[2];
       }, 2);
     };
 
