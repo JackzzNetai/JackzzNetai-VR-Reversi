@@ -12,15 +12,20 @@ AFRAME.registerComponent("move-piece", {
         intersectedEl.parentNode.getAttribute("id") != "black_container") {
         return;
       }
+      
       let d = document.getElementById("board").getAttribute("position").y + 0.4;
-      let position = el.getAttribute('position');
+      let position = el.object3D.position;
+      let pointForDirection = new THREE.Vector3(0, 0, -1);
+      el.object3D.localToWorld(pointForDirection);
+      let controllerWorldDirection = pointForDirection.sub(position);
+      
       let originCoordinate = [
         position.x + raycaster.origin.x,
         position.y + raycaster.origin.y,
         position.z + raycaster.origin.z
       ];
       let direction = [
-        raycaster.direction.x,
+        controllerWorldDirection.x,
         raycaster.direction.y,
         raycaster.direction.z
       ];
