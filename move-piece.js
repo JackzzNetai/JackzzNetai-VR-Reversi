@@ -36,11 +36,11 @@ AFRAME.registerComponent("move-piece", {
         let intersection = intersectionOfLaserAndBoard(el, d);
         let x = intersection[0];
         let z = intersection[2];
-        if (game.withinBoardArea(x, z)) {
-          let neartestGrid = findNearestGridCenter(x, z);
-          x = neartestGrid[0];
-          z = neartestGrid[1];
-        }
+        //if (game.withinBoardArea(x, z)) {
+        //  let nearestGrid = findNearestGridCenter(x, z);
+        //  x = nearestGrid[0];
+        //  z = nearestGrid[1];
+        //}
         chosenPiece.object3D.position.x = x;
         chosenPiece.object3D.position.y = boardPosition.y + 0.6;
         chosenPiece.object3D.position.z = z;
@@ -76,5 +76,6 @@ AFRAME.registerComponent("move-piece", {
 
   remove: function() {
     this.el.removeEventListener("gripdown", this.startGrip);
+    this.el.removeEventListener("gripup", this.drop);
   }
 });
