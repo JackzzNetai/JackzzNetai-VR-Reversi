@@ -26,4 +26,4 @@ WebXR VR Reversi game for Oculus Touch (Rift, Rift S, Oculus Quest 1 and 2) cont
 
 6. Press and release the trigger when aiming at the turn indicator (at top left corner) to pass one's turn manually.
 
-7. Press the grip button when aiming at the piece containers (at bottom right corner) to start dragging the container. Release the grip button while hovering over a grid to drop a piece manually. This action will override the piece that located at the grid if there was one.
+7. Press the grip button when aiming at the piece containers (at bottom right corner) to start dragging the container. Release the grip button while hovering over a grid to drop a piece manually. This action will overwrite the piece that located at the grid if there was one.
