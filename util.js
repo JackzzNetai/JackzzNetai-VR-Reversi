@@ -58,7 +58,7 @@ function intersectionOfLaserAndBoard(controller, d) {
   let raycaster = controller.getAttribute('raycaster');
   console.log(controller.object3D.position);
   console.log(raycaster.origin);
-  console.log(raycaster.direction);
+  console.log(controller.object3D.localToWorld(new THREE.Vector3(raycaster.origin.x, raycaster.origin.y, raycaster.origin.z)));
 
   let origin = [
     raycaster.origin.x + controller.object3D.position.x,
