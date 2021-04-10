@@ -18,12 +18,11 @@ AFRAME.registerComponent("move-piece", {
       }
 
       gripped = true;
-      while (gripped) {
+      setInterval(function() {
         let intersection = intersectionOfLaserAndBoard(el, raycaster);
         intersectedEl.parentNode.object3D.position.x = intersection[0];
         intersectedEl.parentNode.object3D.position.z = intersection[2];
-        setTimeout(function() {}, 200);
-      }
+      }, 20);
     };
 
     this.el.addEventListener("gripdown", this.startGrip);
