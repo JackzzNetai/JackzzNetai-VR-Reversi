@@ -53,10 +53,11 @@ function coordinateOnRayAtLength(origin, direction, l) {
   return result;
 }
 
-function intersectionOfLaserAndBoard(controller, d) {
+// d: board.position.y
+function intersectionOfLaserAndBoard(controller, boardPosition) {
   let position = controller.object3D.position;
   let pointForDirection = new THREE.Vector3(0, 0, -1);
-  let raycaster = el.getAttribute("raycaster");
+  let raycaster = controller.getAttribute("raycaster");
   controller.object3D.localToWorld(pointForDirection);
   let controllerWorldDirection = pointForDirection.sub(position);
 
@@ -70,7 +71,7 @@ function intersectionOfLaserAndBoard(controller, d) {
     controllerWorldDirection.y,
     controllerWorldDirection.z
   ];
-  return findIntersection([0, 1, 0], d, originCoordinate, direction);
+  return findIntersection([0, 1, 0], boardPosition.y + 0.4, originCoordinate, direction);
 }
 
 // TODO: Possible to define board, turn_indicator, as "undeletable"?
