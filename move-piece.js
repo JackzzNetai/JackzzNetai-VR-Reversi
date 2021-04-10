@@ -1,3 +1,5 @@
+var gripped = false;
+
 AFRAME.registerComponent("move-piece", {
   init: function() {
     let el = this.el;
@@ -13,31 +15,24 @@ AFRAME.registerComponent("move-piece", {
         return;
       }
       
-      let d = document.getElementById("board").getAttribute("position").y + 0.4;
-      let position = el.object3D.position;
-      let pointForDirection = new THREE.Vector3(0, 0, -1);
-      el.object3D.localToWorld(pointForDirection);
-      let controllerWorldDirection = pointForDirection.sub(position);
-      
-      let originCoordinate = [
-        position.x + raycaster.origin.x,
-        position.y + raycaster.origin.y,
-        position.z + raycaster.origin.z
-      ];
-      let direction = [
-        controllerWorldDirection.x,
-        controllerWorldDirection.y,
-        controllerWorldDirection.z
-      ];
-      let intersection = findIntersection([0, 1, 0], d, originCoordinate, direction);
-      intersectedEl.parentNode.object3D.position.x = intersection[0];
-      intersectedEl.parentNode.object3D.position.z = intersection[2];
+      gripped = true;     
+      while (gripped) {
+        let intersection = intersectionOfLaserAndBoard(el, raycaster)
+        intersectedEl.parentNode.object3D.position.x = intersection[0];
+        intersectedEl.parentNode.object3D.position.z = intersection[2];
+      }
     };
 
+    this.dropPiece = function() {
+      gripped = false;
+    }
+    
     this.el.addEventListener("gripdown", this.startGrip);
+    this.el.addEventListener("gripup", this.dropPiece);
   },
 
   remove: function() {
     this.el.removeEventListener("gripdown", this.startGrip);
+    this.el.removeEventListener("gripup", this.dropPiece);
   }
 });
