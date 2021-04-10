@@ -26,13 +26,12 @@ AFRAME.registerComponent("move-piece", {
       ];
       let direction = [
         controllerWorldDirection.x,
-        raycaster.direction.y,
-        raycaster.direction.z
+        controllerWorldDirection.y,
+        controllerWorldDirection.z
       ];
       let intersection = findIntersection([0, 1, 0], d, originCoordinate, direction);
-      console.log(intersection); // TODO
-      //intersectedEl.parentNode.object3D.position.x = intersection[0];
-      //intersectedEl.parentNode.object3D.position.z = intersection[2];
+      intersectedEl.parentNode.object3D.position.x = intersection[0];
+      intersectedEl.parentNode.object3D.position.z = intersection[2];
     };
 
     this.el.addEventListener("gripdown", this.startGrip);

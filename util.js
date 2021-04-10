@@ -12,11 +12,11 @@ function findClosestHalfs(x) {
     x = 3.5;
     return x;
   }
-  
+
   let closestInt = Math.round(x);
   let smallerCandidate = closestInt - 0.5;
   let largerCandidate = closestInt + 0.5;
-  
+
   if (x - smallerCandidate < largerCandidate - x) {
     return smallerCandidate;
   }
@@ -27,7 +27,7 @@ function findClosestHalfs(x) {
 // origin = [x0, y0, z0]
 // direction = [xd, yd, zd]
 // This function find the intersection of
-// plane: ax+by+cz=d with ray [x0 y0 z0]^T + l * [xd yd zd]^T 
+// plane: ax+by+cz=d with ray [x0 y0 z0]^T + l * [xd yd zd]^T
 function findIntersection(coefficient, d, origin, direction) {
   let l = (d - dotP(coefficient, origin)) / dotP(coefficient, direction);
   return coordinateOnRayAtLength(origin, direction, l);
@@ -51,6 +51,26 @@ function coordinateOnRayAtLength(origin, direction, l) {
     result[i] = origin[i] + l * direction[i];
   }
   return result;
+}
+
+function intersectionOfLaserAndBoard(controller, raycaster) {
+  let d = document.getElementById("board").getAttribute("position").y + 0.4;
+  let position = controller.object3D.position;
+  let pointForDirection = new THREE.Vector3(0, 0, -1);
+  controller.object3D.localToWorld(pointForDirection);
+  let controllerWorldDirection = pointForDirection.sub(position);
+
+  let originCoordinate = [
+    position.x + raycaster.origin.x,
+    position.y + raycaster.origin.y,
+    position.z + raycaster.origin.z
+  ];
+  let direction = [
+    controllerWorldDirection.x,
+    controllerWorldDirection.y,
+    controllerWorldDirection.z
+  ];
+  return findIntersection([0, 1, 0], d, originCoordinate, direction);
 }
 
 // TODO: Possible to define board, turn_indicator, as "undeletable"?
