@@ -21,6 +21,7 @@ AFRAME.registerComponent("move-piece", {
       setInterval(function() {
         let intersection = intersectionOfLaserAndBoard(el, boardPosition);
         intersectedEl.parentNode.object3D.position.x = intersection[0];
+        intersectedEl.parentNode.object3D.position.x = intersection[0];
         intersectedEl.parentNode.object3D.position.z = intersection[2];
       }, 2);
     };
