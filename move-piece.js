@@ -31,6 +31,5 @@ AFRAME.registerComponent("move-piece", {
 
   remove: function() {
     this.el.removeEventListener("gripdown", this.startGrip);
-    this.el.removeEventListener("gripup", this.dropPiece);
   }
 });
