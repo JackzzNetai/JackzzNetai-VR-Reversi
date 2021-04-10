@@ -48,6 +48,9 @@ AFRAME.registerComponent("move-piece", {
     };
 
     this.drop = function() {
+      if (chosenPiece == null) {
+        return;
+      }
       let piecePosition = chosenPiece.object3D.position;
       if (game.withinBoardArea(piecePosition.x, piecePosition.z)) {
       }
@@ -57,9 +60,10 @@ AFRAME.registerComponent("move-piece", {
         document.getElementById("board").object3D.position.y +
         PIECE_DEFAULT_Y -
         BOARD_DEFAULT_Y;
-      if (chosenPiece.getAttribute('id') === "white_container") {
-          piecePosition.z = 2.5;
-          } else { // chosenPiece.getAttribute('id') === "black_container"
+      if (chosenPiece.getAttribute("id") === "white_container") {
+        piecePosition.z = 2.5;
+      } else {
+        // chosenPiece.getAttribute('id') === "black_container"
         piecePosition.z = 3.5;
       }
       chosenPiece = null;
@@ -67,7 +71,7 @@ AFRAME.registerComponent("move-piece", {
     };
 
     this.el.addEventListener("gripdown", this.startGrip);
-    this.el.addEventListener();
+    this.el.addEventListener("gripup", this.drop);
   },
 
   remove: function() {
